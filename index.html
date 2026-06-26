@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/agentchat-design-system-019dd02c-ef3a-719f-8b0c-969cf214b510/colors_and_type.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap">
+  <style>
+    html, body { margin: 0; padding: 0; background: #fafafb; overflow-x: hidden; }
+    *, *::before, *::after { box-sizing: border-box; }
+    @keyframes cw-rise { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes cw-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+    @keyframes cw-sheet { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    a { text-decoration: none; }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: #0B1020; -webkit-font-smoothing: antialiased;">
+
+  <!-- ===================== NAV ===================== -->
+  <nav ref="{{ navRef }}" style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; color: #ffffff; background: transparent; border-bottom: 1px solid transparent; transition: background 280ms cubic-bezier(0.2,0,0,1), color 280ms cubic-bezier(0.2,0,0,1), border-color 280ms cubic-bezier(0.2,0,0,1);">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); height: 64px; display: flex; align-items: center; justify-content: space-between;">
+      <a href="#top" style="font-family: var(--font-mono); font-weight: 700; font-size: 15px; letter-spacing: 0.02em; color: inherit; display: flex; align-items: center; gap: 9px;">
+        <span style="width: 8px; height: 8px; border-radius: 2px; background: #1D5FFA; display: inline-block; box-shadow: 0 0 10px rgba(29,95,250,0.7);"></span>
+        CRESTWARD LABS
+      </a>
+
+      <sc-if value="{{ showLinks }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); font-size: 14px; font-weight: 500; letter-spacing: -0.01em;">
+          <a href="#services" style="color: inherit; opacity: 0.85;" style-hover="color: inherit; opacity: 1;">Services</a>
+          <a href="#about" style="color: inherit; opacity: 0.85;" style-hover="color: inherit; opacity: 1;">About</a>
+          <a href="#contact" style="color: inherit; opacity: 0.85;" style-hover="color: inherit; opacity: 1;">Contact</a>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showBurger }}" hint-placeholder-val="{{ false }}">
+        <button onClick="{{ toggleMenu }}" aria-label="Menu" style="background: transparent; border: none; color: inherit; cursor: pointer; padding: 8px; margin: -8px; display: flex; align-items: center; justify-content: center;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+            <line x1="3" y1="7" x2="21" y2="7"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="17" x2="21" y2="17"></line>
+          </svg>
+        </button>
+      </sc-if>
+    </div>
+
+    <sc-if value="{{ menuPanelOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="background: rgba(8,12,24,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,0.08); animation: cw-sheet 180ms cubic-bezier(0.2,0,0,1) both;">
+        <div style="display: flex; flex-direction: column; padding: 8px clamp(20px, 5vw, 64px) 20px;">
+          <a href="#services" onClick="{{ closeMenu }}" style="color: #fff; font-size: 17px; font-weight: 500; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);">Services</a>
+          <a href="#about" onClick="{{ closeMenu }}" style="color: #fff; font-size: 17px; font-weight: 500; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);">About</a>
+          <a href="#contact" onClick="{{ closeMenu }}" style="color: #fff; font-size: 17px; font-weight: 500; padding: 16px 0;">Contact</a>
+        </div>
+      </div>
+    </sc-if>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <header id="top" ref="{{ heroRef }}" style="position: relative; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 96px clamp(20px, 5vw, 64px) 72px; background-color: #080C18; background-image: radial-gradient(ellipse 90% 60% at 50% -8%, rgba(29,95,250,0.30), transparent 62%), radial-gradient(ellipse 60% 50% at 50% 108%, rgba(29,95,250,0.10), transparent 60%), linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size: auto, auto, 60px 60px, 60px 60px; overflow: hidden;">
+
+    <div ref="{{ navSentinelRef }}" style="position: absolute; top: 0; left: 0; width: 1px; height: 110px; pointer-events: none;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 40%, transparent 50%, rgba(8,12,24,0.85) 100%); pointer-events: none;"></div>
+
+    <div style="position: relative; max-width: 1000px; width: 100%;">
+      <div style="font-family: var(--font-mono); font-size: clamp(11px, 1.4vw, 13px); letter-spacing: 0.22em; text-transform: uppercase; color: #6E8BD6; margin-bottom: clamp(24px, 4vw, 40px);" data-cw-anim="0">Software · AI Engineering</div>
+
+      <h1 style="font-family: var(--font-mono); font-weight: 800; font-size: clamp(34px, 6vw, 76px); line-height: 1.0; letter-spacing: -0.035em; color: #ffffff; margin: 0;" data-cw-anim="1">CRESTWARD<br>LABS<span style="color: #1D5FFA; animation: cw-blink 1.1s steps(1) infinite; font-weight: 700;">_</span></h1>
+
+      <p style="font-size: clamp(20px, 3.4vw, 34px); font-weight: 400; line-height: 1.25; letter-spacing: -0.02em; color: rgba(255,255,255,0.72); max-width: 22ch; margin: clamp(28px, 4vw, 44px) auto 0;" data-cw-anim="2">Building systems for what comes next.</p>
+
+      <div style="display: inline-flex; align-items: center; gap: 9px; margin-top: clamp(28px, 4vw, 40px); padding: 8px 16px; border: 1px solid rgba(255,255,255,0.14); border-radius: 9999px; background: rgba(255,255,255,0.03); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: rgba(255,255,255,0.78);" data-cw-anim="3">
+        <span style="width: 6px; height: 6px; border-radius: 9999px; background: oklch(70% 0.16 145); box-shadow: 0 0 8px oklch(70% 0.16 145);"></span>
+        Coquitlam, BC — Greater Vancouver
+      </div>
+
+      <div style="margin-top: clamp(36px, 5vw, 52px);" data-cw-anim="4">
+        <a href="mailto:elshaday@crestwardlabs.com?subject=Project%20inquiry" style="display: inline-flex; align-items: center; gap: 10px; background: #1D5FFA; color: #ffffff; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; padding: 15px 28px; border-radius: 8px; box-shadow: 0 8px 30px rgba(29,95,250,0.40); transition: transform 120ms cubic-bezier(0.2,0,0,1), background 120ms, box-shadow 120ms;" style-hover="background: #1A55E0; box-shadow: 0 10px 38px rgba(29,95,250,0.55); transform: translateY(-1px);">
+          Start a conversation
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services" style="background: #fafafb; padding: clamp(72px, 11vw, 132px) clamp(20px, 5vw, 64px); scroll-margin-top: 64px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #1D5FFA; margin-bottom: 16px;">What we do</div>
+      <h2 style="font-size: clamp(28px, 4.5vw, 46px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; color: #0B1020; margin: 0 0 clamp(40px, 6vw, 64px); max-width: 16ch;">Three disciplines, built to production standard.</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(16px, 2vw, 24px);">
+        <sc-for list="{{ services }}" as="svc" hint-placeholder-count="3">
+          <div style="background: #ffffff; border: 1px solid rgba(11,16,32,0.08); border-radius: 14px; padding: clamp(28px, 3vw, 36px); display: flex; flex-direction: column; transition: border-color 180ms cubic-bezier(0.2,0,0,1), box-shadow 180ms, transform 180ms;" style-hover="border-color: rgba(29,95,250,0.45); box-shadow: 0 14px 40px rgba(11,16,32,0.08); transform: translateY(-3px);">
+            <div style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #1D5FFA; margin-bottom: 22px;">{{ svc.no }}</div>
+            <h3 style="font-size: clamp(19px, 2.2vw, 23px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; color: #0B1020; margin: 0 0 14px;">{{ svc.title }}</h3>
+            <p style="font-size: 15px; line-height: 1.6; color: #4A5163; margin: 0; flex: 1;">{{ svc.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about" style="background: #ffffff; padding: clamp(72px, 11vw, 132px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(11,16,32,0.07); scroll-margin-top: 64px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(40px, 6vw, 88px); align-items: start;">
+
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #1D5FFA; margin-bottom: 16px;">The practice</div>
+        <h2 style="font-size: clamp(30px, 4.8vw, 52px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.02; color: #0B1020; margin: 0 0 36px; max-width: 14ch;">We build software that holds up.</h2>
+
+        <div style="padding-top: 28px; border-top: 1px solid rgba(11,16,32,0.1);">
+          <div style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em; color: #0B1020;">Elshaday Tamire Yoseph</div>
+          <div style="font-size: 14px; color: #6B7283; margin-top: 4px;">Founder &amp; Software / AI Engineer</div>
+          <a href="mailto:elshaday@crestwardlabs.com" style="display: inline-block; font-family: var(--font-mono); font-size: 13px; color: #1D5FFA; margin-top: 14px;" style-hover="color: #1A55E0;">elshaday@crestwardlabs.com</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 26px; padding-top: 6px;">
+        <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">Crestward Labs is a boutique software and AI engineering practice. We partner with companies to design, build, and ship production systems — from full-stack products to AI platforms that handle real data and real users.</p>
+        <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">We work in small, senior teams with direct lines to the people making decisions. Every engagement is led hands-on by experienced engineers — you get sound technical judgment applied to your problem, and code written to be maintained long after we ship it.</p>
+        <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">We work with founders, product teams, and CTOs who need a system built right the first time. Based in Coquitlam, BC, in Greater Vancouver, and available for remote contracts worldwide.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact" style="position: relative; background-color: #080C18; background-image: radial-gradient(ellipse 70% 80% at 50% 0%, rgba(29,95,250,0.22), transparent 60%), linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: auto, 60px 60px, 60px 60px; padding: clamp(80px, 12vw, 144px) clamp(20px, 5vw, 64px) 0; scroll-margin-top: 64px; overflow: hidden;">
+    <div style="max-width: 1000px; margin: 0 auto; text-align: center; position: relative;">
+      <h2 style="font-size: clamp(32px, 6vw, 64px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.02; color: #ffffff; margin: 0;">Have a project in mind?</h2>
+      <p style="font-size: clamp(16px, 2.2vw, 19px); line-height: 1.5; color: rgba(255,255,255,0.6); margin: 22px auto 0; max-width: 40ch;">Tell us what you are building. We reply to every serious inquiry.</p>
+
+      <a href="mailto:elshaday@crestwardlabs.com?subject=Project%20inquiry" style="display: inline-block; font-family: var(--font-mono); font-size: clamp(18px, 3.2vw, 30px); font-weight: 500; letter-spacing: -0.01em; color: #ffffff; margin-top: clamp(36px, 5vw, 52px); padding-bottom: 6px; border-bottom: 2px solid rgba(29,95,250,0.9); transition: color 120ms, border-color 120ms;" style-hover="color: #6E9BFF; border-color: #6E9BFF;">elshaday@crestwardlabs.com</a>
+
+      <div style="margin-top: clamp(72px, 11vw, 120px); padding: 28px 0 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+        <div style="font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.02em; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 8px;">
+          <span style="width: 7px; height: 7px; border-radius: 2px; background: #1D5FFA; display: inline-block;"></span>
+          CRESTWARD LABS
+        </div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.45);">© 2026 Crestward Labs · Coquitlam, BC, Canada</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  navRef = React.createRef();
+  heroRef = React.createRef();
+  navSentinelRef = React.createRef();
+  state = { isMobile: false, menuOpen: false };
+
+  componentDidMount() {
+    // Entrance animation — resting state is visible, so content never renders blank
+    const hero = this.heroRef.current;
+    if (hero) {
+      const els = Array.from(hero.querySelectorAll('[data-cw-anim]'));
+      const reveal = () => els.forEach((el) => { el.style.transition = 'none'; el.style.opacity = '1'; el.style.transform = 'none'; el.style.willChange = 'auto'; });
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        reveal();
+      } else {
+        els.forEach((el) => { el.style.opacity = '0'; el.style.transform = 'translateY(20px)'; el.style.willChange = 'opacity, transform'; });
+        void hero.offsetHeight;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          els.forEach((el) => {
+            const i = parseInt(el.getAttribute('data-cw-anim'), 10) || 0;
+            const delay = 60 + i * 90;
+            el.style.transition = 'opacity 780ms cubic-bezier(0.2,0,0,1) ' + delay + 'ms, transform 780ms cubic-bezier(0.2,0,0,1) ' + delay + 'ms';
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+          });
+        }));
+        // Safety net: guarantee the resting visible state even if the timeline is throttled
+        this._revealTimer = setTimeout(reveal, 1300);
+      }
+    }
+
+    this._onResize = () => {
+      const m = window.innerWidth < 760;
+      if (m !== this.state.isMobile) {
+        this.setState({ isMobile: m, menuOpen: m ? this.state.menuOpen : false });
+      }
+      if (this._onScroll) this._onScroll();
+    };
+    this._onResize();
+    window.addEventListener('resize', this._onResize);
+
+    this._setNav = (scrolled) => {
+      const el = this.navRef.current;
+      if (!el) return;
+      if (scrolled) {
+        el.style.background = 'rgba(8,12,24,0.96)';
+        el.style.backdropFilter = 'saturate(160%) blur(14px)';
+        el.style.webkitBackdropFilter = 'saturate(160%) blur(14px)';
+        el.style.borderBottom = '1px solid rgba(255,255,255,0.10)';
+        el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.28)';
+        el.style.color = '#ffffff';
+      } else {
+        el.style.background = 'transparent';
+        el.style.backdropFilter = 'none';
+        el.style.webkitBackdropFilter = 'none';
+        el.style.borderBottom = '1px solid transparent';
+        el.style.boxShadow = 'none';
+        el.style.color = '#ffffff';
+      }
+    };
+    // Capture-phase scroll catches scrolling on ANY container (window, body, or a
+    // host wrapper). State is decided by measuring the sentinel — environment-agnostic.
+    this._onScroll = () => {
+      const s = this.navSentinelRef.current;
+      let scrolled;
+      if (s) {
+        scrolled = s.getBoundingClientRect().bottom <= 70;
+      } else {
+        scrolled = (window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0) > 40;
+      }
+      this._setNav(scrolled);
+    };
+    window.addEventListener('scroll', this._onScroll, true);
+    this._onScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._onResize);
+    if (this._onScroll) window.removeEventListener('scroll', this._onScroll, true);
+    clearTimeout(this._revealTimer);
+  }
+
+  renderVals() {
+    return {
+      navRef: this.navRef,
+      heroRef: this.heroRef,
+      navSentinelRef: this.navSentinelRef,
+      showLinks: !this.state.isMobile,
+      showBurger: this.state.isMobile,
+      menuPanelOpen: this.state.isMobile && this.state.menuOpen,
+      toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      services: [
+        {
+          no: '01',
+          title: 'Software Engineering',
+          desc: 'Full-stack product development with clean architecture at the core. We ship production-grade APIs and frontends built to scale and survive years of iteration.',
+          tags: ['TypeScript', 'Angular', 'FastAPI', 'PostgreSQL']
+        },
+        {
+          no: '02',
+          title: 'AI Systems Development',
+          desc: 'LLM integrations and agentic systems designed for real workloads. From RAG pipelines to multi-tenant AI platforms, we build on the Claude and OpenAI APIs with production discipline.',
+          tags: ['Claude API', 'OpenAI', 'RAG', 'LangChain']
+        },
+        {
+          no: '03',
+          title: 'AI Workflow Automation',
+          desc: 'End-to-end automation of the work that slows teams down. We orchestrate AI agents, intelligent data pipelines, and process flows that run reliably without supervision.',
+          tags: ['AI Agents', 'Data Pipelines', 'Orchestration']
+        }
+      ],
+      stack: ['Python', 'TypeScript', 'Angular', 'FastAPI', 'PostgreSQL', 'Azure', 'Claude API', 'OpenAI'].map((name, i) => ({ name, sep: i > 0 }))
+    };
+  }
+}
+</script>
+</body>
+</html>
