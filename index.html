@@ -77,7 +77,7 @@
 
       <div style="display: inline-flex; align-items: center; gap: 9px; margin-top: clamp(28px, 4vw, 40px); padding: 8px 16px; border: 1px solid rgba(255,255,255,0.14); border-radius: 9999px; background: rgba(255,255,255,0.03); font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em; color: rgba(255,255,255,0.78);" data-cw-anim="3">
         <span style="width: 6px; height: 6px; border-radius: 9999px; background: oklch(70% 0.16 145); box-shadow: 0 0 8px oklch(70% 0.16 145);"></span>
-        Coquitlam, BC — Greater Vancouver
+        Vancouver, BC
       </div>
 
       <div style="margin-top: clamp(36px, 5vw, 52px);" data-cw-anim="4">
@@ -123,8 +123,8 @@
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 26px; padding-top: 6px;">
-        <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">Crestward Labs is a boutique software and AI engineering practice. We partner with companies to design, build, and ship production systems — from full-stack products to AI platforms that handle real data and real users.</p>
-        <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">We work in small, senior teams with direct lines to the people making decisions. Every engagement is led hands-on by experienced engineers — you get sound technical judgment applied to your problem, and code written to be maintained long after we ship it.</p>
+        <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">Crestward Labs is a boutique software and AI engineering practice. We partner with companies to design, build, and ship production systems from full-stack products to AI platforms that handle real data and real users.</p>
+        <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">We work in small, senior teams with direct lines to the people making decisions. Every engagement is led hands-on by experienced engineers you get sound technical judgment applied to your problem, and code written to be maintained long after we ship it.</p>
         <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0;">We work with founders, product teams, and CTOs who need a system built right the first time. Based in Coquitlam, BC, in Greater Vancouver, and available for remote contracts worldwide.</p>
       </div>
     </div>
@@ -157,7 +157,7 @@ class Component extends DCLogic {
   state = { isMobile: false, menuOpen: false };
 
   componentDidMount() {
-    // Entrance animation — resting state is visible, so content never renders blank
+    // Entrance animation resting state is visible, so content never renders blank
     const hero = this.heroRef.current;
     if (hero) {
       const els = Array.from(hero.querySelectorAll('[data-cw-anim]'));
@@ -212,7 +212,7 @@ class Component extends DCLogic {
       }
     };
     // Capture-phase scroll catches scrolling on ANY container (window, body, or a
-    // host wrapper). State is decided by measuring the sentinel — environment-agnostic.
+    // host wrapper). State is decided by measuring the sentinel environment-agnostic.
     this._onScroll = () => {
       const s = this.navSentinelRef.current;
       let scrolled;
@@ -753,7 +753,7 @@ class Component extends DCLogic {
     wrap.className = 'cw-msg assistant';
     const bubble = document.createElement('div');
     bubble.className = 'cw-bubble';
-    bubble.innerHTML = parseMarkdown('Hi! I\'m the Crestward Assistant. Ask me anything about our services — **Software Engineering**, **AI Systems Development**, or **AI Workflow Automation**.');
+    bubble.innerHTML = parseMarkdown('Hi! I\'m the Crestward Assistant. Ask me anything about our services **Software Engineering**, **AI Systems Development**, or **AI Workflow Automation**.');
     const time = document.createElement('div');
     time.className = 'cw-ts';
     time.textContent = ts();
