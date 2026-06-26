@@ -599,7 +599,8 @@ class Component extends DCLogic {
     wrap.className = 'cw-msg ' + role;
     const bubble = document.createElement('div');
     bubble.className = 'cw-bubble';
-    bubble.textContent = text;
+    if (role === 'assistant' && text) bubble.innerHTML = parseMarkdown(text);
+    else bubble.textContent = text;
     const time = document.createElement('div');
     time.className = 'cw-ts';
     time.textContent = ts();
@@ -684,9 +685,21 @@ class Component extends DCLogic {
 
           if (event.type === 'delta') {
             if (thinkingEl) { thinkingEl.remove(); thinkingEl = null; }
-            if (!bubble) { dots.remove(); bubble = addMsg('assistant', '').querySelector ? null : null; const wrap = document.createElement('div'); wrap.className = 'cw-msg assistant'; bubble = document.createElement('div'); bubble.className = 'cw-bubble'; const time = document.createElement('div'); time.className = 'cw-ts'; time.textContent = ts(); wrap.appendChild(bubble); wrap.appendChild(time); messages.appendChild(wrap); }
+            if (!bubble) {
+              dots.remove();
+              const wrap = document.createElement('div');
+              wrap.className = 'cw-msg assistant';
+              bubble = document.createElement('div');
+              bubble.className = 'cw-bubble';
+              const time = document.createElement('div');
+              time.className = 'cw-ts';
+              time.textContent = ts();
+              wrap.appendChild(bubble);
+              wrap.appendChild(time);
+              messages.appendChild(wrap);
+            }
             fullText += event.content;
-            bubble.textContent = fullText;
+            bubble.innerHTML = parseMarkdown(fullText);
             messages.scrollTop = messages.scrollHeight;
           }
 
@@ -712,13 +725,42 @@ class Component extends DCLogic {
     input.focus();
   }
 
+  function parseMarkdown(text) {
+    return text
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/^### (.+)$/gm, '<h4 style="margin:8px 0 4px;font-size:13px;color:#fff;">$1</h4>')
+      .replace(/^## (.+)$/gm, '<h3 style="margin:8px 0 4px;font-size:14px;color:#fff;">$1</h3>')
+      .replace(/^# (.+)$/gm, '<h2 style="margin:8px 0 4px;font-size:15px;color:#fff;">$1</h2>')
+      .replace(/^[-*] (.+)$/gm, '<div style="padding-left:12px;margin:2px 0;">• $1</div>')
+      .replace(/^\d+\. (.+)$/gm, '<div style="padding-left:12px;margin:2px 0;">$1</div>')
+      .replace(/`(.+?)`/g, '<code style="background:rgba(29,95,250,0.2);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;">$1</code>')
+      .replace(/\n/g, '<br>');
+  }
+
   async function openPanel() {
     panel.classList.add('open');
     btn.style.display = 'none';
     if (!opened) {
       opened = true;
-      await sendMessage('Hello! What can Crestward Labs help me with?');
+      addWelcome();
     }
+  }
+
+  function addWelcome() {
+    const wrap = document.createElement('div');
+    wrap.className = 'cw-msg assistant';
+    const bubble = document.createElement('div');
+    bubble.className = 'cw-bubble';
+    bubble.innerHTML = parseMarkdown('Hi! I\'m the Crestward Assistant. Ask me anything about our services — **Software Engineering**, **AI Systems Development**, or **AI Workflow Automation**.');
+    const time = document.createElement('div');
+    time.className = 'cw-ts';
+    time.textContent = ts();
+    wrap.appendChild(bubble);
+    wrap.appendChild(time);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
   }
 
   function closePanel() {
