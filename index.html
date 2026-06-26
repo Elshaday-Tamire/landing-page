@@ -8,6 +8,7 @@
 <body>
 <x-dc>
 <helmet>
+  <link rel="icon" type="image/png" href="logo-icon.png">
   <link rel="stylesheet" href="_ds/agentchat-design-system-019dd02c-ef3a-719f-8b0c-969cf214b510/colors_and_type.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,9 +28,8 @@
   <!-- ===================== NAV ===================== -->
   <nav ref="{{ navRef }}" style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; color: #ffffff; background: transparent; border-bottom: 1px solid transparent; transition: background 280ms cubic-bezier(0.2,0,0,1), color 280ms cubic-bezier(0.2,0,0,1), border-color 280ms cubic-bezier(0.2,0,0,1);">
     <div style="max-width: 1200px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); height: 64px; display: flex; align-items: center; justify-content: space-between;">
-      <a href="#top" style="font-family: var(--font-mono); font-weight: 700; font-size: 15px; letter-spacing: 0.02em; color: inherit; display: flex; align-items: center; gap: 9px;">
-        <span style="width: 8px; height: 8px; border-radius: 2px; background: #1D5FFA; display: inline-block; box-shadow: 0 0 10px rgba(29,95,250,0.7);"></span>
-        CRESTWARD LABS
+      <a href="#top" style="display: flex; align-items: center;">
+        <img src="logo.png" alt="Crestward Labs" style="height: 38px; width: auto; display: block;">
       </a>
 
       <sc-if value="{{ showLinks }}" hint-placeholder-val="{{ true }}">
@@ -139,9 +139,8 @@
       <a href="mailto:elshaday@crestwardlabs.com?subject=Project%20inquiry" style="display: inline-block; font-family: var(--font-mono); font-size: clamp(18px, 3.2vw, 30px); font-weight: 500; letter-spacing: -0.01em; color: #ffffff; margin-top: clamp(36px, 5vw, 52px); padding-bottom: 6px; border-bottom: 2px solid rgba(29,95,250,0.9); transition: color 120ms, border-color 120ms;" style-hover="color: #6E9BFF; border-color: #6E9BFF;">elshaday@crestwardlabs.com</a>
 
       <div style="margin-top: clamp(72px, 11vw, 120px); padding: 28px 0 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
-        <div style="font-family: var(--font-mono); font-weight: 700; font-size: 13px; letter-spacing: 0.02em; color: rgba(255,255,255,0.85); display: flex; align-items: center; gap: 8px;">
-          <span style="width: 7px; height: 7px; border-radius: 2px; background: #1D5FFA; display: inline-block;"></span>
-          CRESTWARD LABS
+        <div style="display: flex; align-items: center;">
+          <img src="logo.png" alt="Crestward Labs" style="height: 22px; width: auto; display: block; opacity: 0.9;">
         </div>
         <div style="font-size: 13px; color: rgba(255,255,255,0.45);">© 2026 Crestward Labs · Coquitlam, BC, Canada</div>
       </div>
@@ -269,5 +268,488 @@ class Component extends DCLogic {
   }
 }
 </script>
+
+<!-- ── CRESTWARD CHAT WIDGET ──────────────────────────────────────── -->
+<style>
+  #cw-chat-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #060F28;
+    border: 1px solid rgba(29,95,250,0.5);
+    box-shadow: 0 0 22px rgba(29,95,250,0.45), 0 4px 16px rgba(0,0,0,0.4);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: cw-pulse 2.8s ease-in-out infinite;
+  }
+  #cw-chat-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 32px rgba(29,95,250,0.7), 0 4px 20px rgba(0,0,0,0.5);
+  }
+  #cw-chat-btn svg { width: 26px; height: 26px; }
+  @keyframes cw-pulse {
+    0%, 100% { box-shadow: 0 0 22px rgba(29,95,250,0.45), 0 4px 16px rgba(0,0,0,0.4); }
+    50%       { box-shadow: 0 0 36px rgba(29,95,250,0.75), 0 4px 20px rgba(0,0,0,0.5); }
+  }
+
+  #cw-chat-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 28px;
+    z-index: 9998;
+    width: 380px;
+    height: 560px;
+    background: #060F28;
+    border: 1px solid rgba(29,95,250,0.25);
+    border-radius: 16px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.6), 0 0 40px rgba(29,95,250,0.12);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  #cw-chat-panel.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+
+  #cw-panel-header {
+    padding: 16px 18px 14px;
+    background: #0C1A3A;
+    border-bottom: 1px solid rgba(29,95,250,0.18);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+  #cw-panel-header .cw-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1D5FFA 0%, #0C1A3A 100%);
+    border: 1px solid rgba(29,95,250,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  #cw-panel-header .cw-avatar svg { width: 18px; height: 18px; }
+  .cw-header-text { flex: 1; }
+  .cw-header-text h4 {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 2px;
+    letter-spacing: 0.04em;
+  }
+  .cw-header-text p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    margin: 0;
+    font-family: system-ui, sans-serif;
+  }
+  .cw-online-dot {
+    width: 7px; height: 7px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #22c55e;
+    flex-shrink: 0;
+  }
+  #cw-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    color: rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+  #cw-close-btn:hover { color: #fff; }
+
+  #cw-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+  }
+  #cw-messages::-webkit-scrollbar { width: 4px; }
+  #cw-messages::-webkit-scrollbar-track { background: transparent; }
+  #cw-messages::-webkit-scrollbar-thumb { background: rgba(29,95,250,0.3); border-radius: 2px; }
+
+  .cw-msg {
+    display: flex;
+    flex-direction: column;
+    max-width: 85%;
+    animation: cw-msg-in 0.2s ease both;
+  }
+  @keyframes cw-msg-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .cw-msg.user { align-self: flex-end; align-items: flex-end; }
+  .cw-msg.assistant { align-self: flex-start; align-items: flex-start; }
+
+  .cw-bubble {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    line-height: 1.6;
+    font-family: system-ui, -apple-system, sans-serif;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .cw-msg.user .cw-bubble {
+    background: #1D5FFA;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  .cw-msg.assistant .cw-bubble {
+    background: #0C1A3A;
+    color: rgba(255,255,255,0.88);
+    border: 1px solid rgba(29,95,250,0.15);
+    border-bottom-left-radius: 4px;
+  }
+  .cw-ts {
+    font-size: 10px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 4px;
+    font-family: ui-monospace, monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .cw-thinking {
+    align-self: flex-start;
+    font-size: 11px;
+    font-style: italic;
+    color: rgba(29,95,250,0.7);
+    font-family: ui-monospace, monospace;
+    letter-spacing: 0.04em;
+    padding: 0 4px;
+    animation: cw-fade 0.3s ease;
+  }
+  @keyframes cw-fade { from { opacity: 0; } to { opacity: 1; } }
+
+  .cw-dots {
+    display: flex;
+    gap: 4px;
+    padding: 12px 14px;
+    background: #0C1A3A;
+    border: 1px solid rgba(29,95,250,0.15);
+    border-radius: 12px;
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+  }
+  .cw-dots span {
+    width: 6px; height: 6px;
+    background: rgba(29,95,250,0.6);
+    border-radius: 50%;
+    animation: cw-dot-bounce 1.2s ease-in-out infinite;
+  }
+  .cw-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .cw-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes cw-dot-bounce {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40%           { transform: translateY(-5px); opacity: 1; }
+  }
+
+  #cw-input-bar {
+    padding: 12px 14px;
+    background: #0C1A3A;
+    border-top: 1px solid rgba(29,95,250,0.18);
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  #cw-input {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(29,95,250,0.25);
+    border-radius: 10px;
+    padding: 9px 12px;
+    color: #fff;
+    font-size: 13px;
+    font-family: system-ui, sans-serif;
+    resize: none;
+    outline: none;
+    line-height: 1.5;
+    max-height: 100px;
+    transition: border-color 0.2s;
+  }
+  #cw-input::placeholder { color: rgba(255,255,255,0.25); }
+  #cw-input:focus { border-color: rgba(29,95,250,0.6); }
+  #cw-send-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: #1D5FFA;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, transform 0.1s;
+  }
+  #cw-send-btn:hover { background: #3570ff; }
+  #cw-send-btn:active { transform: scale(0.93); }
+  #cw-send-btn:disabled { background: rgba(29,95,250,0.3); cursor: not-allowed; }
+  #cw-send-btn svg { width: 16px; height: 16px; }
+
+  #cw-branding {
+    text-align: center;
+    padding: 6px 0 8px;
+    font-size: 10px;
+    color: rgba(255,255,255,0.18);
+    font-family: ui-monospace, monospace;
+    letter-spacing: 0.08em;
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 480px) {
+    #cw-chat-panel {
+      bottom: 0; right: 0; left: 0;
+      width: 100%;
+      height: 70vh;
+      border-radius: 16px 16px 0 0;
+    }
+    #cw-chat-btn { bottom: 20px; right: 20px; }
+  }
+</style>
+
+<!-- Floating Button -->
+<button id="cw-chat-btn" aria-label="Open chat">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#5A8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+  </svg>
+</button>
+
+<!-- Chat Panel -->
+<div id="cw-chat-panel" role="dialog" aria-label="Crestward Assistant chat">
+  <div id="cw-panel-header">
+    <div class="cw-avatar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#5A8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+      </svg>
+    </div>
+    <div class="cw-header-text">
+      <h4>Crestward Assistant</h4>
+      <p>Ask me anything about our services</p>
+    </div>
+    <div class="cw-online-dot"></div>
+    <button id="cw-close-btn" aria-label="Close chat">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+
+  <div id="cw-messages"></div>
+
+  <div id="cw-input-bar">
+    <textarea id="cw-input" rows="1" placeholder="Ask about our services…" aria-label="Message input"></textarea>
+    <button id="cw-send-btn" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+  <div id="cw-branding">POWERED BY CRESTWARD LABS</div>
+</div>
+
+<script>
+(function () {
+  const API_BASE   = 'https://agenthub.smartschema.io/api';
+  const API_KEY    = 'sk-aJPUyPB7KeBxxA0DW7pv1AQnaHQBfb0IqnwFj0e6RyY';
+  const AGENT_ID   = 'f87a5eea-db8f-4901-9e59-7363575b4250';
+
+  const btn        = document.getElementById('cw-chat-btn');
+  const panel      = document.getElementById('cw-chat-panel');
+  const closeBtn   = document.getElementById('cw-close-btn');
+  const messages   = document.getElementById('cw-messages');
+  const input      = document.getElementById('cw-input');
+  const sendBtn    = document.getElementById('cw-send-btn');
+
+  let sessionId    = null;
+  let isStreaming  = false;
+  let opened       = false;
+
+  function ts() {
+    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  }
+
+  function addMsg(role, text) {
+    const wrap = document.createElement('div');
+    wrap.className = 'cw-msg ' + role;
+    const bubble = document.createElement('div');
+    bubble.className = 'cw-bubble';
+    bubble.textContent = text;
+    const time = document.createElement('div');
+    time.className = 'cw-ts';
+    time.textContent = ts();
+    wrap.appendChild(bubble);
+    wrap.appendChild(time);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+    return bubble;
+  }
+
+  function addThinking(label) {
+    const el = document.createElement('div');
+    el.className = 'cw-thinking';
+    el.textContent = '⟳ ' + label;
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
+
+  function showDots() {
+    const el = document.createElement('div');
+    el.className = 'cw-dots';
+    el.innerHTML = '<span></span><span></span><span></span>';
+    messages.appendChild(el);
+    messages.scrollTop = messages.scrollHeight;
+    return el;
+  }
+
+  async function createSession() {
+    const res = await fetch(API_BASE + '/public/sessions', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + API_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title: 'Website chat' })
+    });
+    const data = await res.json();
+    return data.id;
+  }
+
+  async function sendMessage(text) {
+    if (isStreaming) return;
+    isStreaming = true;
+    sendBtn.disabled = true;
+
+    if (!sessionId) {
+      try { sessionId = await createSession(); }
+      catch (e) { addMsg('assistant', 'Connection error. Please email elshaday@crestwardlabs.com directly.'); isStreaming = false; sendBtn.disabled = false; return; }
+    }
+
+    addMsg('user', text);
+
+    const dots = showDots();
+    let thinkingEl = null;
+    let bubble = null;
+    let fullText = '';
+
+    try {
+      const res = await fetch(`${API_BASE}/public/sessions/${sessionId}/stream`, {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text, filter_vars: {} })
+      });
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      let buf = '';
+
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buf += decoder.decode(value);
+        const lines = buf.split('\n');
+        buf = lines.pop() ?? '';
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          let event;
+          try { event = JSON.parse(line.slice(6)); } catch { continue; }
+
+          if (event.type === 'thinking_step') {
+            if (!thinkingEl) { dots.remove(); thinkingEl = addThinking(event.content || 'Thinking…'); }
+            else { thinkingEl.textContent = '⟳ ' + (event.content || 'Thinking…'); }
+          }
+
+          if (event.type === 'delta') {
+            if (thinkingEl) { thinkingEl.remove(); thinkingEl = null; }
+            if (!bubble) { dots.remove(); bubble = addMsg('assistant', '').querySelector ? null : null; const wrap = document.createElement('div'); wrap.className = 'cw-msg assistant'; bubble = document.createElement('div'); bubble.className = 'cw-bubble'; const time = document.createElement('div'); time.className = 'cw-ts'; time.textContent = ts(); wrap.appendChild(bubble); wrap.appendChild(time); messages.appendChild(wrap); }
+            fullText += event.content;
+            bubble.textContent = fullText;
+            messages.scrollTop = messages.scrollHeight;
+          }
+
+          if (event.type === 'done') {
+            dots.remove();
+            if (thinkingEl) thinkingEl.remove();
+          }
+
+          if (event.type === 'error') {
+            dots.remove();
+            if (thinkingEl) thinkingEl.remove();
+            addMsg('assistant', 'Something went wrong. Please reach out at elshaday@crestwardlabs.com');
+          }
+        }
+      }
+    } catch (e) {
+      dots.remove();
+      addMsg('assistant', 'Connection lost. Please email elshaday@crestwardlabs.com directly.');
+    }
+
+    isStreaming = false;
+    sendBtn.disabled = false;
+    input.focus();
+  }
+
+  async function openPanel() {
+    panel.classList.add('open');
+    btn.style.display = 'none';
+    if (!opened) {
+      opened = true;
+      await sendMessage('Hello! What can Crestward Labs help me with?');
+    }
+  }
+
+  function closePanel() {
+    panel.classList.remove('open');
+    btn.style.display = 'flex';
+  }
+
+  btn.addEventListener('click', openPanel);
+  closeBtn.addEventListener('click', closePanel);
+
+  sendBtn.addEventListener('click', () => {
+    const text = input.value.trim();
+    if (!text) return;
+    input.value = '';
+    input.style.height = 'auto';
+    sendMessage(text);
+  });
+
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendBtn.click();
+    }
+  });
+
+  input.addEventListener('input', () => {
+    input.style.height = 'auto';
+    input.style.height = Math.min(input.scrollHeight, 100) + 'px';
+  });
+})();
+</script>
+<!-- ── END CHAT WIDGET ─────────────────────────────────────────────── -->
 </body>
 </html>
