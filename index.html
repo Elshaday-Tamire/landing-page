@@ -912,32 +912,34 @@ class Component extends DCLogic {
 
     var listening = false;
     var savedText = '';
+    var finalTranscript = '';
 
     recognition.onstart = function() {
       listening = true;
       micBtn.classList.add('listening');
-      savedText = input.value;
+      savedText = input.value.trim();
+      finalTranscript = '';
     };
 
     recognition.onresult = function(e) {
-      var finalText = '';
       var interimText = '';
-      for (var i = 0; i < e.results.length; i++) {
+      for (var i = e.resultIndex; i < e.results.length; i++) {
         if (e.results[i].isFinal) {
-          finalText += e.results[i][0].transcript;
+          finalTranscript += e.results[i][0].transcript + ' ';
         } else {
           interimText += e.results[i][0].transcript;
         }
       }
-      var combined = savedText + (savedText && (finalText || interimText) ? ' ' : '') + finalText + interimText;
-      input.value = combined;
+      var prefix = savedText ? savedText + ' ' : '';
+      input.value = prefix + finalTranscript + interimText;
       input.dispatchEvent(new Event('input'));
     };
 
     recognition.onend = function() {
       listening = false;
       micBtn.classList.remove('listening');
-      savedText = input.value.trim(); // save so next session appends
+      savedText = input.value.trim();
+      finalTranscript = '';
     };
 
     recognition.onerror = function() {
