@@ -922,16 +922,17 @@ class Component extends DCLogic {
     };
 
     recognition.onresult = function(e) {
+      finalTranscript = '';
       var interimText = '';
-      for (var i = e.resultIndex; i < e.results.length; i++) {
+      for (var i = 0; i < e.results.length; i++) {
         if (e.results[i].isFinal) {
           finalTranscript += e.results[i][0].transcript + ' ';
         } else {
-          interimText += e.results[i][0].transcript;
+          interimText = e.results[i][0].transcript;
         }
       }
       var prefix = savedText ? savedText + ' ' : '';
-      input.value = prefix + finalTranscript + interimText;
+      input.value = (prefix + finalTranscript + interimText).trim();
       input.dispatchEvent(new Event('input'));
     };
 
