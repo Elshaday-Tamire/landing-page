@@ -8,8 +8,76 @@
 <body>
 <x-dc>
 <helmet>
+  <title>Crestward Labs — Agentic AI Systems & Software Engineering</title>
+  <meta name="description" content="Crestward Labs builds production-grade agentic AI systems and full-stack software. Multi-agent orchestration, RAG, MCP, SSE streaming — engineered for real workloads. Vancouver, BC.">
+  <meta name="keywords" content="agentic AI, multi-agent systems, AI workflow automation, RAG, MCP, software engineering, Vancouver, Claude API, OpenAI, AI orchestration">
+  <meta name="author" content="Crestward Labs">
+  <link rel="canonical" href="https://crestwardlabs.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://crestwardlabs.com/">
+  <meta property="og:title" content="Crestward Labs — Agentic AI Systems & Software Engineering">
+  <meta property="og:description" content="We design and ship production-grade agentic AI systems: multi-agent orchestration, RAG pipelines, MCP tool integration, and real-time SSE streaming. Based in Vancouver, BC.">
+  <meta property="og:image" content="https://crestwardlabs.com/linkedin-banner.png">
+  <meta property="og:site_name" content="Crestward Labs">
+  <meta property="og:locale" content="en_CA">
+
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Crestward Labs — Agentic AI Systems & Software Engineering">
+  <meta name="twitter:description" content="Production-grade agentic AI systems: multi-agent orchestration, RAG, MCP, and SSE streaming. Based in Vancouver, BC.">
+  <meta name="twitter:image" content="https://crestwardlabs.com/linkedin-banner.png">
+
+  <!-- LLMs.txt discovery hint -->
+  <link rel="alternate" type="text/plain" title="LLM context" href="/llms.txt">
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Crestward Labs",
+    "url": "https://crestwardlabs.com",
+    "logo": "https://crestwardlabs.com/logo.png",
+    "image": "https://crestwardlabs.com/linkedin-banner.png",
+    "description": "Agentic AI systems and software engineering practice. We build production-grade multi-agent platforms with RAG, MCP, SSE streaming, and public APIs.",
+    "email": "hello@crestwardlabs.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Vancouver",
+      "addressRegion": "BC",
+      "addressCountry": "CA"
+    },
+    "areaServed": "Worldwide",
+    "serviceType": [
+      "Agentic AI Systems",
+      "Multi-Agent Orchestration",
+      "AI Workflow Automation",
+      "Software Engineering",
+      "RAG Pipeline Development",
+      "MCP Integration"
+    ],
+    "sameAs": [
+      "https://www.linkedin.com/company/crestward-labs",
+      "https://www.youtube.com/@CrestwardLabs"
+    ],
+    "knowsAbout": [
+      "Agentic AI",
+      "Multi-agent systems",
+      "Retrieval-Augmented Generation",
+      "Model Context Protocol",
+      "AI workflow orchestration",
+      "Large Language Models",
+      "FastAPI",
+      "TypeScript",
+      "Angular",
+      "PostgreSQL"
+    ]
+  }
+  </script>
+
   <link rel="icon" type="image/png" href="logo-icon.png">
-  <!-- Google Analytics 4 — loads only after cookie consent -->
   <script>
     window._gaId = 'G-7WJCJ3E5WH';
     window._gaLoaded = false;
@@ -26,7 +94,6 @@
       gtag('js', new Date());
       gtag('config', window._gaId, { anonymize_ip: true });
     }
-    // Auto-load if previously consented
     if (localStorage.getItem('cw_cookie_consent') === 'accepted') { _loadGA(); }
   </script>
   <link rel="stylesheet" href="_ds/agentchat-design-system-019dd02c-ef3a-719f-8b0c-969cf214b510/colors_and_type.css">
@@ -40,6 +107,72 @@
     @keyframes cw-blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
     @keyframes cw-sheet { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
     a { text-decoration: none; }
+
+    /* ── Workflows section ── */
+    .orch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 56px;
+    }
+    @media (max-width: 1100px) { .orch-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .orch-grid { grid-template-columns: 1fr; } }
+
+    .orch-card {
+      background: rgba(255,255,255,0.025);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 240ms ease, transform 240ms ease, box-shadow 240ms ease;
+    }
+    .orch-card:hover {
+      border-color: rgba(255,255,255,0.16);
+      transform: translateY(-5px);
+      box-shadow: 0 28px 64px rgba(0,0,0,0.5);
+    }
+    .orch-diagram {
+      width: 100%;
+      background: rgba(0,0,0,0.25);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 4px 0 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .orch-diagram svg { width: 100%; height: auto; display: block; }
+    .orch-body { padding: 18px 20px 22px; }
+    .orch-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+    .orch-badge::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      box-shadow: 0 0 7px currentColor;
+    }
+    .orch-card h3 { font-size: 16px; font-weight: 600; letter-spacing: -0.02em; color: #fff; margin: 0 0 7px; }
+    .orch-card p  { font-size: 13px; line-height: 1.65; color: rgba(255,255,255,0.42); margin: 0; }
+
+    @keyframes orch-ring {
+      0%   { r: 18; opacity: 0.55; }
+      100% { r: 32; opacity: 0; }
+    }
+    @keyframes orch-ring-sm {
+      0%   { r: 13; opacity: 0.55; }
+      100% { r: 24; opacity: 0; }
+    }
+    @keyframes orch-glow {
+      0%,100% { opacity: 0.6; }
+      50%     { opacity: 1; }
+    }
   </style>
 </helmet>
 
@@ -51,9 +184,9 @@
       <a href="#top" style="display: flex; align-items: center;">
         <img src="logo.png" alt="Crestward Labs" style="height: 38px; width: auto; display: block;">
       </a>
-
       <sc-if value="{{ showLinks }}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); font-size: 14px; font-weight: 500; letter-spacing: -0.01em;">
+          <a href="#orchestration" style="color: inherit; opacity: 0.85;" style-hover="color: inherit; opacity: 1;">Workflows</a>
           <a href="#services" style="color: inherit; opacity: 0.85;" style-hover="color: inherit; opacity: 1;">Services</a>
           <a href="#about" style="color: inherit; opacity: 0.85;" style-hover="color: inherit; opacity: 1;">About</a>
           <a href="#contact" style="color: inherit; opacity: 0.85;" style-hover="color: inherit; opacity: 1;">Contact</a>
@@ -66,7 +199,6 @@
           </a>
         </div>
       </sc-if>
-
       <sc-if value="{{ showBurger }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ toggleMenu }}" aria-label="Menu" style="background: transparent; border: none; color: inherit; cursor: pointer; padding: 8px; margin: -8px; display: flex; align-items: center; justify-content: center;">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
@@ -77,10 +209,10 @@
         </button>
       </sc-if>
     </div>
-
     <sc-if value="{{ menuPanelOpen }}" hint-placeholder-val="{{ false }}">
       <div style="background: rgba(8,12,24,0.96); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,0.08); animation: cw-sheet 180ms cubic-bezier(0.2,0,0,1) both;">
         <div style="display: flex; flex-direction: column; padding: 8px clamp(20px, 5vw, 64px) 20px;">
+          <a href="#orchestration" onClick="{{ closeMenu }}" style="color: #fff; font-size: 17px; font-weight: 500; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);">Workflows</a>
           <a href="#services" onClick="{{ closeMenu }}" style="color: #fff; font-size: 17px; font-weight: 500; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);">Services</a>
           <a href="#about" onClick="{{ closeMenu }}" style="color: #fff; font-size: 17px; font-weight: 500; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);">About</a>
           <a href="#contact" onClick="{{ closeMenu }}" style="color: #fff; font-size: 17px; font-weight: 500; padding: 16px 0;">Contact</a>
@@ -91,11 +223,11 @@
 
   <!-- ===================== HERO ===================== -->
   <header id="top" ref="{{ heroRef }}" style="position: relative; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 96px clamp(20px, 5vw, 64px) 72px; background-color: #080C18; background-image: radial-gradient(ellipse 90% 60% at 50% -8%, rgba(29,95,250,0.30), transparent 62%), radial-gradient(ellipse 60% 50% at 50% 108%, rgba(29,95,250,0.10), transparent 60%), linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size: auto, auto, 60px 60px, 60px 60px; overflow: hidden;">
-
+    <canvas id="hero-canvas" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;"></canvas>
     <div ref="{{ navSentinelRef }}" style="position: absolute; top: 0; left: 0; width: 1px; height: 110px; pointer-events: none;"></div>
-    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 40%, transparent 50%, rgba(8,12,24,0.85) 100%); pointer-events: none;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(ellipse 70% 70% at 50% 40%, transparent 50%, rgba(8,12,24,0.85) 100%); pointer-events: none; z-index: 1;"></div>
 
-    <div style="position: relative; max-width: 1000px; width: 100%;">
+    <div style="position: relative; z-index: 2; max-width: 1000px; width: 100%;">
       <div style="font-family: var(--font-mono); font-size: clamp(11px, 1.4vw, 13px); letter-spacing: 0.22em; text-transform: uppercase; color: #6E8BD6; margin-bottom: clamp(24px, 4vw, 40px);" data-cw-anim="0">Agentic AI · Software Engineering</div>
 
       <h1 style="font-family: var(--font-mono); font-weight: 800; font-size: clamp(34px, 6vw, 76px); line-height: 1.0; letter-spacing: -0.035em; color: #ffffff; margin: 0;" data-cw-anim="1">CRESTWARD<br>LABS<span style="color: #1D5FFA; animation: cw-blink 1.1s steps(1) infinite; font-weight: 700;">_</span></h1>
@@ -109,7 +241,7 @@
 
       <div style="margin-top: clamp(36px, 5vw, 52px);" data-cw-anim="4">
         <a href="mailto:hello@crestwardlabs.com?subject=Project%20inquiry" style="display: inline-flex; align-items: center; gap: 10px; background: #1D5FFA; color: #ffffff; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; padding: 15px 28px; border-radius: 8px; box-shadow: 0 8px 30px rgba(29,95,250,0.40); transition: transform 120ms cubic-bezier(0.2,0,0,1), background 120ms, box-shadow 120ms;" style-hover="background: #1A55E0; box-shadow: 0 10px 38px rgba(29,95,250,0.55); transform: translateY(-1px);">
-          Start a conversation
+          Book a Discovery Call
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </a>
       </div>
@@ -131,17 +263,15 @@
             <p style="font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.5); margin: 0;">Agents that break down complex goals, select tools, recover from errors, and complete tasks without step-by-step human guidance.</p>
           </div>
           <div style="border-left: 2px solid #1D5FFA; padding-left: 20px;">
-            <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4580FF; margin-bottom: 6px;">Multi-Agent Orchestration</div>
-            <p style="font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.5); margin: 0;">Complex workflows decomposed into specialized agents (planner, executor, reviewer) working in concert with shared memory and tool access.</p>
+            <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4580FF; margin-bottom: 6px;">Multi-Agent Workflows</div>
+            <p style="font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.5); margin: 0;">Complex workflows decomposed into specialized agents working in concert with shared memory and tool access.</p>
           </div>
           <div style="border-left: 2px solid #1D5FFA; padding-left: 20px;">
             <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #4580FF; margin-bottom: 6px;">Production-Grade Reliability</div>
-            <p style="font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.5); margin: 0;">Every agentic system we ship comes with guardrails, observability, fallback paths, and the resilience real workloads demand. No prototypes. Production only.</p>
+            <p style="font-size: 14.5px; line-height: 1.6; color: rgba(255,255,255,0.5); margin: 0;">Every agentic system we ship comes with guardrails, observability, fallback paths, and the resilience real workloads demand.</p>
           </div>
         </div>
       </div>
-
-      <!-- Capability strip -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1px; background: rgba(255,255,255,0.06); border-radius: 12px; overflow: hidden;">
         <div style="background: rgba(255,255,255,0.03); padding: 24px 22px;">
           <div style="font-family: var(--font-mono); font-size: 22px; font-weight: 700; color: #1D5FFA; margin-bottom: 6px;">RAG</div>
@@ -171,12 +301,365 @@
     </div>
   </section>
 
+  <!-- ===================== ORCHESTRATION ===================== -->
+  <section id="orchestration" style="background: #06091A; padding: clamp(72px, 10vw, 128px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(255,255,255,0.05); scroll-margin-top: 64px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #1D5FFA; margin-bottom: 16px;">Workflows Modes</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 48px; align-items: end; margin-bottom: 0;">
+        <div>
+          <h2 style="font-size: clamp(28px, 4.2vw, 48px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; color: #ffffff; margin: 0; max-width: 22ch;">Every workflow pattern. Production-ready.</h2>
+        </div>
+        <div>
+          <p style="font-size: clamp(15px, 1.6vw, 17px); line-height: 1.7; color: rgba(255,255,255,0.48); margin: 0; max-width: 52ch;">Real enterprise workflows don't fit one pattern. We engineer multi-agent systems across all orchestration modes, from simple pipelines to fully reactive event-driven meshes.</p>
+        </div>
+      </div>
+
+      <div class="orch-grid">
+
+        <!-- 1. Sequential -->
+        <div class="orch-card">
+          <div class="orch-diagram">
+            <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="f-seq"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- static edges -->
+              <line x1="68" y1="50" x2="122" y2="50" stroke="#00C8FF" stroke-width="1.2" stroke-opacity="0.25"/>
+              <line x1="168" y1="50" x2="222" y2="50" stroke="#00C8FF" stroke-width="1.2" stroke-opacity="0.25"/>
+              <line x1="268" y1="50" x2="322" y2="50" stroke="#00C8FF" stroke-width="1.2" stroke-opacity="0.25"/>
+              <!-- arrowheads -->
+              <polygon points="122,45 122,55 134,50" fill="#00C8FF" opacity="0.35"/>
+              <polygon points="222,45 222,55 234,50" fill="#00C8FF" opacity="0.35"/>
+              <polygon points="322,45 322,55 334,50" fill="#00C8FF" opacity="0.35"/>
+              <!-- edge paths for animateMotion -->
+              <path id="es1" d="M68,50 L134,50" fill="none"/>
+              <path id="es2" d="M168,50 L234,50" fill="none"/>
+              <path id="es3" d="M268,50 L334,50" fill="none"/>
+              <!-- signal bullets -->
+              <circle r="4" fill="#00C8FF" filter="url(#f-seq)">
+                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"><mpath href="#es1"/></animateMotion>
+              </circle>
+              <circle r="4" fill="#00C8FF" filter="url(#f-seq)">
+                <animateMotion dur="1.8s" repeatCount="indefinite" begin="0.6s"><mpath href="#es2"/></animateMotion>
+              </circle>
+              <circle r="4" fill="#00C8FF" filter="url(#f-seq)">
+                <animateMotion dur="1.8s" repeatCount="indefinite" begin="1.2s"><mpath href="#es3"/></animateMotion>
+              </circle>
+              <!-- pulse rings -->
+              <circle cx="50" cy="50" r="18" fill="none" stroke="#00C8FF" stroke-width="1.5" opacity="0" style="animation:orch-ring 2s ease-out infinite;"/>
+              <circle cx="150" cy="50" r="18" fill="none" stroke="#00C8FF" stroke-width="1.5" opacity="0" style="animation:orch-ring 2s ease-out infinite;animation-delay:0.6s"/>
+              <circle cx="250" cy="50" r="18" fill="none" stroke="#00C8FF" stroke-width="1.5" opacity="0" style="animation:orch-ring 2s ease-out infinite;animation-delay:1.2s"/>
+              <circle cx="350" cy="50" r="18" fill="none" stroke="#00C8FF" stroke-width="1.5" opacity="0" style="animation:orch-ring 2s ease-out infinite;animation-delay:1.8s"/>
+              <!-- nodes -->
+              <circle cx="50"  cy="50" r="18" fill="#0A0F24" stroke="#00C8FF" stroke-width="1.8"/>
+              <circle cx="150" cy="50" r="18" fill="#0A0F24" stroke="#00C8FF" stroke-width="1.8"/>
+              <circle cx="250" cy="50" r="18" fill="#0A0F24" stroke="#00C8FF" stroke-width="1.8"/>
+              <circle cx="350" cy="50" r="18" fill="#0A0F24" stroke="#00C8FF" stroke-width="1.8"/>
+              <text x="50"  y="54" text-anchor="middle" fill="#00C8FF" font-family="monospace" font-size="10" font-weight="700">A1</text>
+              <text x="150" y="54" text-anchor="middle" fill="#00C8FF" font-family="monospace" font-size="10" font-weight="700">A2</text>
+              <text x="250" y="54" text-anchor="middle" fill="#00C8FF" font-family="monospace" font-size="10" font-weight="700">A3</text>
+              <text x="350" y="54" text-anchor="middle" fill="#00C8FF" font-family="monospace" font-size="10" font-weight="700">A4</text>
+            </svg>
+          </div>
+          <div class="orch-body">
+            <div class="orch-badge" style="color:#00C8FF;">Sequential</div>
+            <h3>Linear step-by-step pipelines</h3>
+            <p>Each agent hands off to the next. Perfect for multi-stage reasoning, validation chains, and document transformation workflows.</p>
+          </div>
+        </div>
+
+        <!-- 2. Parallel -->
+        <div class="orch-card">
+          <div class="orch-diagram">
+            <svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="f-par"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- static edges -->
+              <line x1="68" y1="70" x2="162" y2="35"  stroke="#00E88A" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="68" y1="70" x2="162" y2="70"  stroke="#00E88A" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="68" y1="70" x2="162" y2="105" stroke="#00E88A" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="218" y1="35"  x2="312" y2="70" stroke="#00E88A" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="218" y1="70"  x2="312" y2="70" stroke="#00E88A" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="218" y1="105" x2="312" y2="70" stroke="#00E88A" stroke-width="1.2" stroke-opacity="0.22"/>
+              <!-- paths -->
+              <path id="ep1" d="M68,70 L162,35"  fill="none"/>
+              <path id="ep2" d="M68,70 L162,70"  fill="none"/>
+              <path id="ep3" d="M68,70 L162,105" fill="none"/>
+              <path id="ep4" d="M218,35  L312,70" fill="none"/>
+              <path id="ep5" d="M218,70  L312,70" fill="none"/>
+              <path id="ep6" d="M218,105 L312,70" fill="none"/>
+              <!-- signals (fan-out all fire together) -->
+              <circle r="3.5" fill="#00E88A" filter="url(#f-par)"><animateMotion dur="1.4s" repeatCount="indefinite" begin="0s"><mpath href="#ep1"/></animateMotion></circle>
+              <circle r="3.5" fill="#00E88A" filter="url(#f-par)"><animateMotion dur="1.4s" repeatCount="indefinite" begin="0s"><mpath href="#ep2"/></animateMotion></circle>
+              <circle r="3.5" fill="#00E88A" filter="url(#f-par)"><animateMotion dur="1.4s" repeatCount="indefinite" begin="0s"><mpath href="#ep3"/></animateMotion></circle>
+              <circle r="3.5" fill="#00E88A" filter="url(#f-par)"><animateMotion dur="1.4s" repeatCount="indefinite" begin="1.1s"><mpath href="#ep4"/></animateMotion></circle>
+              <circle r="3.5" fill="#00E88A" filter="url(#f-par)"><animateMotion dur="1.4s" repeatCount="indefinite" begin="1.1s"><mpath href="#ep5"/></animateMotion></circle>
+              <circle r="3.5" fill="#00E88A" filter="url(#f-par)"><animateMotion dur="1.4s" repeatCount="indefinite" begin="1.1s"><mpath href="#ep6"/></animateMotion></circle>
+              <!-- parallel zone marker -->
+              <line x1="180" y1="18" x2="180" y2="122" stroke="#00E88A" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+              <line x1="200" y1="18" x2="200" y2="122" stroke="#00E88A" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="3 3"/>
+              <!-- nodes -->
+              <circle cx="50"  cy="70"  r="18" fill="#0A0F24" stroke="#00E88A" stroke-width="1.8"/>
+              <circle cx="190" cy="35"  r="15" fill="#0A0F24" stroke="#00E88A" stroke-width="1.6"/>
+              <circle cx="190" cy="70"  r="15" fill="#0A0F24" stroke="#00E88A" stroke-width="1.6"/>
+              <circle cx="190" cy="105" r="15" fill="#0A0F24" stroke="#00E88A" stroke-width="1.6"/>
+              <circle cx="330" cy="70"  r="18" fill="#0A0F24" stroke="#00E88A" stroke-width="1.8"/>
+              <text x="50"  y="74" text-anchor="middle" fill="#00E88A" font-family="monospace" font-size="10" font-weight="700">IN</text>
+              <text x="190" y="39" text-anchor="middle" fill="#00E88A" font-family="monospace" font-size="9" font-weight="700">W1</text>
+              <text x="190" y="74" text-anchor="middle" fill="#00E88A" font-family="monospace" font-size="9" font-weight="700">W2</text>
+              <text x="190" y="109" text-anchor="middle" fill="#00E88A" font-family="monospace" font-size="9" font-weight="700">W3</text>
+              <text x="330" y="74" text-anchor="middle" fill="#00E88A" font-family="monospace" font-size="9" font-weight="700">OUT</text>
+            </svg>
+          </div>
+          <div class="orch-body">
+            <div class="orch-badge" style="color:#00E88A;">Parallel</div>
+            <h3>Simultaneous fan-out execution</h3>
+            <p>Multiple agents run in parallel on split workloads. Maximum throughput for independent, time-sensitive tasks.</p>
+          </div>
+        </div>
+
+        <!-- 3. Hierarchical -->
+        <div class="orch-card">
+          <div class="orch-diagram">
+            <svg viewBox="0 0 380 170" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="f-hier"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- static edges level 0→1 -->
+              <line x1="190" y1="38" x2="80"  y2="95" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.28"/>
+              <line x1="190" y1="38" x2="190" y2="95" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.28"/>
+              <line x1="190" y1="38" x2="300" y2="95" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.28"/>
+              <!-- static edges level 1→2 -->
+              <line x1="80"  y1="109" x2="45"  y2="150" stroke="#9D4EDD" stroke-width="1" stroke-opacity="0.2"/>
+              <line x1="80"  y1="109" x2="115" y2="150" stroke="#9D4EDD" stroke-width="1" stroke-opacity="0.2"/>
+              <line x1="300" y1="109" x2="265" y2="150" stroke="#9D4EDD" stroke-width="1" stroke-opacity="0.2"/>
+              <line x1="300" y1="109" x2="335" y2="150" stroke="#9D4EDD" stroke-width="1" stroke-opacity="0.2"/>
+              <!-- paths for motion -->
+              <path id="eh1" d="M190,38 L80,95"   fill="none"/>
+              <path id="eh2" d="M190,38 L190,95"  fill="none"/>
+              <path id="eh3" d="M190,38 L300,95"  fill="none"/>
+              <path id="eh4" d="M80,109  L45,150"  fill="none"/>
+              <path id="eh5" d="M80,109  L115,150" fill="none"/>
+              <path id="eh6" d="M300,109 L265,150" fill="none"/>
+              <path id="eh7" d="M300,109 L335,150" fill="none"/>
+              <!-- signals -->
+              <circle r="3.5" fill="#9D4EDD" filter="url(#f-hier)"><animateMotion dur="2s" repeatCount="indefinite" begin="0s"><mpath href="#eh1"/></animateMotion></circle>
+              <circle r="3.5" fill="#9D4EDD" filter="url(#f-hier)"><animateMotion dur="2s" repeatCount="indefinite" begin="0.2s"><mpath href="#eh2"/></animateMotion></circle>
+              <circle r="3.5" fill="#9D4EDD" filter="url(#f-hier)"><animateMotion dur="2s" repeatCount="indefinite" begin="0.4s"><mpath href="#eh3"/></animateMotion></circle>
+              <circle r="3" fill="#9D4EDD" filter="url(#f-hier)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.1s"><mpath href="#eh4"/></animateMotion></circle>
+              <circle r="3" fill="#9D4EDD" filter="url(#f-hier)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.2s"><mpath href="#eh5"/></animateMotion></circle>
+              <circle r="3" fill="#9D4EDD" filter="url(#f-hier)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.3s"><mpath href="#eh6"/></animateMotion></circle>
+              <circle r="3" fill="#9D4EDD" filter="url(#f-hier)"><animateMotion dur="2s" repeatCount="indefinite" begin="1.4s"><mpath href="#eh7"/></animateMotion></circle>
+              <!-- root pulse ring -->
+              <circle cx="190" cy="25" r="13" fill="none" stroke="#9D4EDD" stroke-width="1.5" opacity="0" style="animation:orch-ring-sm 2.5s ease-out infinite;"/>
+              <!-- nodes level 0 -->
+              <circle cx="190" cy="25" r="15" fill="#0A0F24" stroke="#9D4EDD" stroke-width="2"/>
+              <text x="190" y="29" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="9" font-weight="700">ORCH</text>
+              <!-- nodes level 1 -->
+              <circle cx="80"  cy="102" r="13" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.6"/>
+              <circle cx="190" cy="102" r="13" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.6"/>
+              <circle cx="300" cy="102" r="13" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.6"/>
+              <text x="80"  y="106" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="8" font-weight="700">S1</text>
+              <text x="190" y="106" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="8" font-weight="700">S2</text>
+              <text x="300" y="106" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="8" font-weight="700">S3</text>
+              <!-- nodes level 2 -->
+              <circle cx="45"  cy="157" r="10" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.8"/>
+              <circle cx="115" cy="157" r="10" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.8"/>
+              <circle cx="190" cy="157" r="10" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.5"/>
+              <circle cx="265" cy="157" r="10" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.8"/>
+              <circle cx="335" cy="157" r="10" fill="#0A0F24" stroke="#9D4EDD" stroke-width="1.2" stroke-opacity="0.8"/>
+              <text x="45"  y="161" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="7" font-weight="700" opacity="0.8">W1</text>
+              <text x="115" y="161" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="7" font-weight="700" opacity="0.8">W2</text>
+              <text x="265" y="161" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="7" font-weight="700" opacity="0.8">W3</text>
+              <text x="335" y="161" text-anchor="middle" fill="#9D4EDD" font-family="monospace" font-size="7" font-weight="700" opacity="0.8">W4</text>
+            </svg>
+          </div>
+          <div class="orch-body">
+            <div class="orch-badge" style="color:#9D4EDD;">Hierarchical</div>
+            <h3>Orchestrator delegates to sub-agents</h3>
+            <p>A master agent breaks down the goal and assigns specialized sub-agents. Scales to any complexity through layered delegation.</p>
+          </div>
+        </div>
+
+        <!-- 4. Event-Driven -->
+        <div class="orch-card">
+          <div class="orch-diagram">
+            <svg viewBox="0 0 380 140" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="f-evt"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                <filter id="f-evt2"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- event source glow pulse -->
+              <circle cx="65" cy="70" r="30" fill="#FF6B35" fill-opacity="0.07" style="animation:orch-glow 1.6s ease-in-out infinite;"/>
+              <!-- static edges (dashed = reactive) -->
+              <line x1="90"  y1="58" x2="248" y2="32"  stroke="#FF6B35" stroke-width="1.2" stroke-opacity="0.25" stroke-dasharray="4 5"/>
+              <line x1="92"  y1="70" x2="248" y2="70"  stroke="#FF6B35" stroke-width="1.2" stroke-opacity="0.25" stroke-dasharray="4 5"/>
+              <line x1="90"  y1="82" x2="248" y2="108" stroke="#FF6B35" stroke-width="1.2" stroke-opacity="0.25" stroke-dasharray="4 5"/>
+              <!-- paths -->
+              <path id="ee1" d="M90,58 L248,32"  fill="none"/>
+              <path id="ee2" d="M92,70 L248,70"  fill="none"/>
+              <path id="ee3" d="M90,82 L248,108" fill="none"/>
+              <!-- signals with staggered fire -->
+              <circle r="4" fill="#FF6B35" filter="url(#f-evt2)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="0s"><mpath href="#ee1"/></animateMotion></circle>
+              <circle r="4" fill="#FF6B35" filter="url(#f-evt2)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="0.5s"><mpath href="#ee2"/></animateMotion></circle>
+              <circle r="4" fill="#FF6B35" filter="url(#f-evt2)"><animateMotion dur="1.8s" repeatCount="indefinite" begin="1.0s"><mpath href="#ee3"/></animateMotion></circle>
+              <!-- event source -->
+              <circle cx="65" cy="70" r="24" fill="#0A0F24" stroke="#FF6B35" stroke-width="2" filter="url(#f-evt)"/>
+              <text x="65" y="66" text-anchor="middle" fill="#FF6B35" font-family="monospace" font-size="16">⚡</text>
+              <text x="65" y="79" text-anchor="middle" fill="#FF6B35" font-family="monospace" font-size="7">EVENT</text>
+              <!-- handler nodes -->
+              <circle cx="266" cy="32"  r="18" fill="#0A0F24" stroke="#FF6B35" stroke-width="1.8"/>
+              <circle cx="266" cy="70"  r="18" fill="#0A0F24" stroke="#FF6B35" stroke-width="1.8"/>
+              <circle cx="266" cy="108" r="18" fill="#0A0F24" stroke="#FF6B35" stroke-width="1.8"/>
+              <text x="266" y="36"  text-anchor="middle" fill="#FF6B35" font-family="monospace" font-size="9" font-weight="700">H1</text>
+              <text x="266" y="74"  text-anchor="middle" fill="#FF6B35" font-family="monospace" font-size="9" font-weight="700">H2</text>
+              <text x="266" y="112" text-anchor="middle" fill="#FF6B35" font-family="monospace" font-size="9" font-weight="700">H3</text>
+              <!-- trigger labels -->
+              <text x="310" y="36"  fill="rgba(255,107,53,0.45)" font-family="monospace" font-size="8">webhook</text>
+              <text x="310" y="74"  fill="rgba(255,107,53,0.45)" font-family="monospace" font-size="8">schedule</text>
+              <text x="310" y="112" fill="rgba(255,107,53,0.45)" font-family="monospace" font-size="8">db event</text>
+            </svg>
+          </div>
+          <div class="orch-body">
+            <div class="orch-badge" style="color:#FF6B35;">Event-Driven</div>
+            <h3>Reactive triggers activate agents</h3>
+            <p>Agents fire on webhooks, schedules, database events, or API calls. Fully reactive architecture with zero polling overhead.</p>
+          </div>
+        </div>
+
+        <!-- 5. Collaborative -->
+        <div class="orch-card">
+          <div class="orch-diagram">
+            <svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="f-coll"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- 4 agents: TL(80,45) TR(300,45) BL(80,115) BR(300,115) -->
+              <!-- all-to-all edges (6) -->
+              <line x1="98"  y1="45"  x2="282" y2="45"  stroke="#FF3CAC" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="80"  y1="63"  x2="80"  y2="97"  stroke="#FF3CAC" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="98"  y1="60"  x2="282" y2="100" stroke="#FF3CAC" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="282" y1="60"  x2="98"  y2="100" stroke="#FF3CAC" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="300" y1="63"  x2="300" y2="97"  stroke="#FF3CAC" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="98"  y1="115" x2="282" y2="115" stroke="#FF3CAC" stroke-width="1.2" stroke-opacity="0.22"/>
+              <!-- paths for motion -->
+              <path id="ec1" d="M98,45  L282,45"  fill="none"/>
+              <path id="ec2" d="M80,63  L80,97"   fill="none"/>
+              <path id="ec3" d="M98,60  L282,100" fill="none"/>
+              <path id="ec4" d="M282,60 L98,100"  fill="none"/>
+              <path id="ec5" d="M300,63 L300,97"  fill="none"/>
+              <path id="ec6" d="M98,115 L282,115" fill="none"/>
+              <!-- signals -->
+              <circle r="3.5" fill="#FF3CAC" filter="url(#f-coll)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0s"><mpath href="#ec1"/></animateMotion></circle>
+              <circle r="3.5" fill="#FF3CAC" filter="url(#f-coll)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.4s"><mpath href="#ec2"/></animateMotion></circle>
+              <circle r="3.5" fill="#FF3CAC" filter="url(#f-coll)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="0.8s"><mpath href="#ec3"/></animateMotion></circle>
+              <circle r="3.5" fill="#FF3CAC" filter="url(#f-coll)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.2s"><mpath href="#ec4"/></animateMotion></circle>
+              <circle r="3.5" fill="#FF3CAC" filter="url(#f-coll)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="1.6s"><mpath href="#ec5"/></animateMotion></circle>
+              <circle r="3.5" fill="#FF3CAC" filter="url(#f-coll)"><animateMotion dur="2.4s" repeatCount="indefinite" begin="2.0s"><mpath href="#ec6"/></animateMotion></circle>
+              <!-- shared context badge -->
+              <rect x="158" y="72" width="64" height="18" rx="5" fill="rgba(255,60,172,0.1)" stroke="#FF3CAC" stroke-width="0.8" stroke-opacity="0.45"/>
+              <text x="190" y="84" text-anchor="middle" fill="#FF3CAC" font-family="monospace" font-size="7" opacity="0.7">shared ctx</text>
+              <!-- nodes -->
+              <circle cx="80"  cy="45"  r="18" fill="#0A0F24" stroke="#FF3CAC" stroke-width="1.8"/>
+              <circle cx="300" cy="45"  r="18" fill="#0A0F24" stroke="#FF3CAC" stroke-width="1.8"/>
+              <circle cx="80"  cy="115" r="18" fill="#0A0F24" stroke="#FF3CAC" stroke-width="1.8"/>
+              <circle cx="300" cy="115" r="18" fill="#0A0F24" stroke="#FF3CAC" stroke-width="1.8"/>
+              <text x="80"  y="49"  text-anchor="middle" fill="#FF3CAC" font-family="monospace" font-size="9" font-weight="700">A1</text>
+              <text x="300" y="49"  text-anchor="middle" fill="#FF3CAC" font-family="monospace" font-size="9" font-weight="700">A2</text>
+              <text x="80"  y="119" text-anchor="middle" fill="#FF3CAC" font-family="monospace" font-size="9" font-weight="700">A3</text>
+              <text x="300" y="119" text-anchor="middle" fill="#FF3CAC" font-family="monospace" font-size="9" font-weight="700">A4</text>
+            </svg>
+          </div>
+          <div class="orch-body">
+            <div class="orch-badge" style="color:#FF3CAC;">Collaborative</div>
+            <h3>Agents coordinate as peers</h3>
+            <p>Agents communicate directly, share context, and negotiate outputs. Emergent intelligence through peer-to-peer coordination.</p>
+          </div>
+        </div>
+
+        <!-- 6. Hybrid -->
+        <div class="orch-card">
+          <div class="orch-diagram">
+            <svg viewBox="0 0 440 120" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <filter id="f-hyb"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+              </defs>
+              <!-- seq A→B -->
+              <line x1="58" y1="60" x2="102" y2="60" stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.28"/>
+              <!-- fan-out B→parallel -->
+              <line x1="120" y1="60" x2="174" y2="28"  stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="120" y1="60" x2="174" y2="60"  stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="120" y1="60" x2="174" y2="92"  stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.22"/>
+              <!-- fan-in parallel→merge -->
+              <line x1="206" y1="28"  x2="260" y2="60" stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="206" y1="60"  x2="260" y2="60" stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.22"/>
+              <line x1="206" y1="92"  x2="260" y2="60" stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.22"/>
+              <!-- seq merge→C→OUT -->
+              <line x1="278" y1="60" x2="322" y2="60" stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.28"/>
+              <line x1="338" y1="60" x2="382" y2="60" stroke="#FFD166" stroke-width="1.2" stroke-opacity="0.28"/>
+              <!-- parallel region bars -->
+              <rect x="172" y="12" width="4" height="96" rx="2" fill="#FFD166" fill-opacity="0.3"/>
+              <rect x="204" y="12" width="4" height="96" rx="2" fill="#FFD166" fill-opacity="0.3"/>
+              <!-- paths -->
+              <path id="ey1" d="M58,60  L102,60" fill="none"/>
+              <path id="ey2" d="M120,60 L174,28" fill="none"/>
+              <path id="ey3" d="M120,60 L174,60" fill="none"/>
+              <path id="ey4" d="M120,60 L174,92" fill="none"/>
+              <path id="ey5" d="M206,28 L260,60" fill="none"/>
+              <path id="ey6" d="M206,60 L260,60" fill="none"/>
+              <path id="ey7" d="M206,92 L260,60" fill="none"/>
+              <path id="ey8" d="M278,60 L322,60" fill="none"/>
+              <path id="ey9" d="M338,60 L382,60" fill="none"/>
+              <!-- signals -->
+              <circle r="3.5" fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="0s"><mpath href="#ey1"/></animateMotion></circle>
+              <circle r="3"   fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="0.6s"><mpath href="#ey2"/></animateMotion></circle>
+              <circle r="3"   fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="0.6s"><mpath href="#ey3"/></animateMotion></circle>
+              <circle r="3"   fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="0.6s"><mpath href="#ey4"/></animateMotion></circle>
+              <circle r="3"   fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="1.5s"><mpath href="#ey5"/></animateMotion></circle>
+              <circle r="3"   fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="1.5s"><mpath href="#ey6"/></animateMotion></circle>
+              <circle r="3"   fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="1.5s"><mpath href="#ey7"/></animateMotion></circle>
+              <circle r="3.5" fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="2.2s"><mpath href="#ey8"/></animateMotion></circle>
+              <circle r="3.5" fill="#FFD166" filter="url(#f-hyb)"><animateMotion dur="3s" repeatCount="indefinite" begin="2.7s"><mpath href="#ey9"/></animateMotion></circle>
+              <!-- nodes -->
+              <circle cx="40"  cy="60" r="16" fill="#0A0F24" stroke="#FFD166" stroke-width="1.8"/>
+              <circle cx="112" cy="60" r="14" fill="#0A0F24" stroke="#FFD166" stroke-width="1.6"/>
+              <circle cx="190" cy="28" r="12" fill="#0A0F24" stroke="#FFD166" stroke-width="1.5"/>
+              <circle cx="190" cy="60" r="12" fill="#0A0F24" stroke="#FFD166" stroke-width="1.5"/>
+              <circle cx="190" cy="92" r="12" fill="#0A0F24" stroke="#FFD166" stroke-width="1.5"/>
+              <circle cx="270" cy="60" r="14" fill="#0A0F24" stroke="#FFD166" stroke-width="1.6"/>
+              <circle cx="330" cy="60" r="14" fill="#0A0F24" stroke="#FFD166" stroke-width="1.6"/>
+              <circle cx="400" cy="60" r="14" fill="#0A0F24" stroke="#FFD166" stroke-width="1.6"/>
+              <text x="40"  y="64" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="9" font-weight="700">A</text>
+              <text x="112" y="64" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="9" font-weight="700">B</text>
+              <text x="190" y="32" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="8" font-weight="700">P1</text>
+              <text x="190" y="64" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="8" font-weight="700">P2</text>
+              <text x="190" y="96" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="8" font-weight="700">P3</text>
+              <text x="270" y="64" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="8" font-weight="700">M</text>
+              <text x="330" y="64" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="8" font-weight="700">C</text>
+              <text x="400" y="64" text-anchor="middle" fill="#FFD166" font-family="monospace" font-size="7" font-weight="700">OUT</text>
+              <!-- phase labels -->
+              <text x="76"  y="108" text-anchor="middle" fill="rgba(255,209,102,0.35)" font-family="monospace" font-size="7">seq</text>
+              <text x="190" y="112" text-anchor="middle" fill="rgba(255,209,102,0.35)" font-family="monospace" font-size="7">parallel</text>
+              <text x="350" y="108" text-anchor="middle" fill="rgba(255,209,102,0.35)" font-family="monospace" font-size="7">seq</text>
+            </svg>
+          </div>
+          <div class="orch-body">
+            <div class="orch-badge" style="color:#FFD166;">Hybrid</div>
+            <h3>Any pattern, any combination</h3>
+            <p>Mix sequential, parallel, hierarchical, and event-driven modes within a single workflow. Designed for real enterprise complexity.</p>
+          </div>
+        </div>
+
+      </div><!-- /orch-grid -->
+    </div>
+  </section>
+
   <!-- ===================== SERVICES ===================== -->
   <section id="services" style="background: #fafafb; padding: clamp(72px, 11vw, 132px) clamp(20px, 5vw, 64px); scroll-margin-top: 64px;">
     <div style="max-width: 1200px; margin: 0 auto;">
       <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #1D5FFA; margin-bottom: 16px;">What we do</div>
       <h2 style="font-size: clamp(28px, 4.5vw, 46px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.05; color: #0B1020; margin: 0 0 clamp(40px, 6vw, 64px); max-width: 16ch;">Agentic AI first. Software engineering always.</h2>
-
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: clamp(16px, 2vw, 24px);">
         <sc-for list="{{ services }}" as="svc" hint-placeholder-count="3">
           <div style="background: #ffffff; border: 1px solid rgba(11,16,32,0.08); border-radius: 14px; padding: clamp(28px, 3vw, 36px); display: flex; flex-direction: column; transition: border-color 180ms cubic-bezier(0.2,0,0,1), box-shadow 180ms, transform 180ms;" style-hover="border-color: rgba(29,95,250,0.45); box-shadow: 0 14px 40px rgba(11,16,32,0.08); transform: translateY(-3px);">
@@ -192,18 +675,15 @@
   <!-- ===================== ABOUT ===================== -->
   <section id="about" style="background: #ffffff; padding: clamp(72px, 11vw, 132px) clamp(20px, 5vw, 64px); border-top: 1px solid rgba(11,16,32,0.07); scroll-margin-top: 64px;">
     <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(40px, 6vw, 88px); align-items: start;">
-
       <div>
         <div style="font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #1D5FFA; margin-bottom: 16px;">The practice</div>
         <h2 style="font-size: clamp(30px, 4.8vw, 52px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.02; color: #0B1020; margin: 0 0 36px; max-width: 14ch;">We build software that holds up.</h2>
-
         <div style="padding-top: 28px; border-top: 1px solid rgba(11,16,32,0.1);">
           <div style="font-size: 15px; font-weight: 500; color: #0B1020; line-height: 1.5;">Ready to build something?</div>
           <div style="font-size: 14px; color: #6B7283; margin-top: 4px;">Reach out. We reply to every serious inquiry.</div>
           <a href="mailto:hello@crestwardlabs.com?subject=Project%20inquiry" style="display: inline-block; font-family: var(--font-mono); font-size: 13px; color: #1D5FFA; margin-top: 14px;" style-hover="color: #1A55E0;">hello@crestwardlabs.com</a>
         </div>
       </div>
-
       <div style="display: flex; flex-direction: column; gap: 26px; padding-top: 6px;">
         <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0; text-align: justify;">Crestward Labs is a software and agentic AI engineering practice. We design, build, and ship production systems: multi-agent AI platforms and full-stack SaaS products for founders, product teams, and CTOs who need it done right the first time.</p>
         <p style="font-size: clamp(15px, 1.7vw, 17px); line-height: 1.65; color: #3C4252; margin: 0; text-align: justify;">Our focus is agentic AI at the core: systems where AI reasons, takes action, and delivers results autonomously. We've built multi-tenant agentic platforms with RAG, MCP tool integration, real-time SSE streaming, and public APIs. These are systems that handle real data and real users at scale.</p>
@@ -217,9 +697,7 @@
     <div style="max-width: 1000px; margin: 0 auto; text-align: center; position: relative;">
       <h2 style="font-size: clamp(32px, 6vw, 64px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.02; color: #ffffff; margin: 0;">Have a project in mind?</h2>
       <p style="font-size: clamp(16px, 2.2vw, 19px); line-height: 1.5; color: rgba(255,255,255,0.6); margin: 22px auto 0; max-width: 40ch;">Tell us what you are building. We reply to every serious inquiry.</p>
-
       <a href="mailto:hello@crestwardlabs.com?subject=Project%20inquiry" style="display: inline-block; font-family: var(--font-mono); font-size: clamp(18px, 3.2vw, 30px); font-weight: 500; letter-spacing: -0.01em; color: #ffffff; margin-top: clamp(36px, 5vw, 52px); padding-bottom: 6px; border-bottom: 2px solid rgba(29,95,250,0.9); transition: color 120ms, border-color 120ms;" style-hover="color: #6E9BFF; border-color: #6E9BFF;">hello@crestwardlabs.com</a>
-
       <div style="margin-top: clamp(72px, 11vw, 120px); padding: 28px 0 32px; border-top: 1px solid rgba(255,255,255,0.08); display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px;">
         <div style="display: flex; align-items: center;">
           <img src="logo.png" alt="Crestward Labs" style="height: 22px; width: auto; display: block; opacity: 0.9;">
@@ -247,7 +725,6 @@ class Component extends DCLogic {
   state = { isMobile: false, menuOpen: false };
 
   componentDidMount() {
-    // Entrance animation resting state is visible, so content never renders blank
     const hero = this.heroRef.current;
     if (hero) {
       const els = Array.from(hero.querySelectorAll('[data-cw-anim]'));
@@ -267,7 +744,6 @@ class Component extends DCLogic {
             el.style.transform = 'translateY(0)';
           });
         }));
-        // Safety net: guarantee the resting visible state even if the timeline is throttled
         this._revealTimer = setTimeout(reveal, 1300);
       }
     }
@@ -301,8 +777,6 @@ class Component extends DCLogic {
         el.style.color = '#ffffff';
       }
     };
-    // Capture-phase scroll catches scrolling on ANY container (window, body, or a
-    // host wrapper). State is decided by measuring the sentinel environment-agnostic.
     this._onScroll = () => {
       const s = this.navSentinelRef.current;
       let scrolled;
@@ -338,22 +812,18 @@ class Component extends DCLogic {
           no: '01',
           title: 'Agentic AI Systems',
           desc: 'Multi-agent architectures that reason, plan, and act. We build LLM-powered agents with memory, tool access, and orchestration: from RAG pipelines to full agentic platforms exposed via public APIs.',
-          tags: ['Claude API', 'OpenAI', 'RAG', 'MCP', 'SSE']
         },
         {
           no: '02',
           title: 'Software Engineering',
           desc: 'Full-stack product development with clean architecture at the core. We ship production-grade APIs and frontends built to scale and survive years of iteration.',
-          tags: ['TypeScript', 'Angular', 'FastAPI', 'PostgreSQL']
         },
         {
           no: '03',
           title: 'AI Workflow Automation',
           desc: 'End-to-end automation of the work that slows teams down. We orchestrate agents, intelligent data pipelines, and process flows that run reliably without supervision.',
-          tags: ['AI Agents', 'Pipelines', 'Orchestration']
         }
       ],
-      stack: ['Python', 'TypeScript', 'Angular', 'FastAPI', 'PostgreSQL', 'Azure', 'Claude API', 'OpenAI'].map((name, i) => ({ name, sep: i > 0 }))
     };
   }
 }
@@ -388,7 +858,6 @@ class Component extends DCLogic {
     0%, 100% { box-shadow: 0 0 22px rgba(29,95,250,0.45), 0 4px 16px rgba(0,0,0,0.4); }
     50%       { box-shadow: 0 0 36px rgba(29,95,250,0.75), 0 4px 20px rgba(0,0,0,0.5); }
   }
-
   #cw-chat-panel {
     position: fixed;
     bottom: 100px;
@@ -413,7 +882,6 @@ class Component extends DCLogic {
     transform: translateY(0) scale(1);
     pointer-events: all;
   }
-
   #cw-panel-header {
     padding: 16px 18px 14px;
     background: #0C1A3A;
@@ -424,229 +892,65 @@ class Component extends DCLogic {
     flex-shrink: 0;
   }
   #cw-panel-header .cw-avatar {
-    width: 36px;
-    height: 36px;
+    width: 36px; height: 36px;
     border-radius: 50%;
     background: linear-gradient(135deg, #1D5FFA 0%, #0C1A3A 100%);
     border: 1px solid rgba(29,95,250,0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
   #cw-panel-header .cw-avatar svg { width: 18px; height: 18px; }
   .cw-header-text { flex: 1; }
-  .cw-header-text h4 {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-    font-size: 13px;
-    font-weight: 700;
-    color: #fff;
-    margin: 0 0 2px;
-    letter-spacing: 0.04em;
-  }
-  .cw-header-text p {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    margin: 0;
-    font-family: system-ui, sans-serif;
-  }
-  .cw-online-dot {
-    width: 7px; height: 7px;
-    background: #22c55e;
-    border-radius: 50%;
-    box-shadow: 0 0 6px #22c55e;
-    flex-shrink: 0;
-  }
-  #cw-close-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 4px;
-    color: rgba(255,255,255,0.4);
-    display: flex;
-    align-items: center;
-    transition: color 0.2s;
-  }
+  .cw-header-text h4 { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 13px; font-weight: 700; color: #fff; margin: 0 0 2px; letter-spacing: 0.04em; }
+  .cw-header-text p  { font-size: 11px; color: rgba(255,255,255,0.4); margin: 0; font-family: system-ui, sans-serif; }
+  .cw-online-dot { width: 7px; height: 7px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; flex-shrink: 0; }
+  #cw-close-btn { background: none; border: none; cursor: pointer; padding: 4px; color: rgba(255,255,255,0.4); display: flex; align-items: center; transition: color 0.2s; }
   #cw-close-btn:hover { color: #fff; }
-
-  #cw-messages {
-    flex: 1;
-    overflow-y: auto;
-    padding: 16px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    scroll-behavior: smooth;
-  }
+  #cw-messages { flex: 1; overflow-y: auto; padding: 16px 14px; display: flex; flex-direction: column; gap: 12px; scroll-behavior: smooth; }
   #cw-messages::-webkit-scrollbar { width: 4px; }
   #cw-messages::-webkit-scrollbar-track { background: transparent; }
   #cw-messages::-webkit-scrollbar-thumb { background: rgba(29,95,250,0.3); border-radius: 2px; }
-
-  .cw-msg {
-    display: flex;
-    flex-direction: column;
-    max-width: 85%;
-    animation: cw-msg-in 0.2s ease both;
-  }
-  @keyframes cw-msg-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+  .cw-msg { display: flex; flex-direction: column; max-width: 85%; animation: cw-msg-in 0.2s ease both; }
+  @keyframes cw-msg-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
   .cw-msg.user { align-self: flex-end; align-items: flex-end; }
   .cw-msg.assistant { align-self: flex-start; align-items: flex-start; }
-
-  .cw-bubble {
-    padding: 10px 14px;
-    border-radius: 12px;
-    font-size: 13.5px;
-    line-height: 1.6;
-    font-family: system-ui, -apple-system, sans-serif;
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-  .cw-msg.user .cw-bubble {
-    background: #1D5FFA;
-    color: #fff;
-    border-bottom-right-radius: 4px;
-  }
-  .cw-msg.assistant .cw-bubble {
-    background: #0C1A3A;
-    color: rgba(255,255,255,0.88);
-    border: 1px solid rgba(29,95,250,0.15);
-    border-bottom-left-radius: 4px;
-  }
-  .cw-ts {
-    font-size: 10px;
-    color: rgba(255,255,255,0.25);
-    margin-top: 4px;
-    font-family: ui-monospace, monospace;
-    letter-spacing: 0.04em;
-  }
-
-  .cw-thinking {
-    align-self: flex-start;
-    font-size: 11px;
-    font-style: italic;
-    color: rgba(29,95,250,0.7);
-    font-family: ui-monospace, monospace;
-    letter-spacing: 0.04em;
-    padding: 0 4px;
-    animation: cw-fade 0.3s ease;
-  }
+  .cw-bubble { padding: 10px 14px; border-radius: 12px; font-size: 13.5px; line-height: 1.6; font-family: system-ui, -apple-system, sans-serif; white-space: pre-wrap; word-break: break-word; }
+  .cw-msg.user .cw-bubble { background: #1D5FFA; color: #fff; border-bottom-right-radius: 4px; }
+  .cw-msg.assistant .cw-bubble { background: #0C1A3A; color: rgba(255,255,255,0.88); border: 1px solid rgba(29,95,250,0.15); border-bottom-left-radius: 4px; }
+  .cw-ts { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 4px; font-family: ui-monospace, monospace; letter-spacing: 0.04em; }
+  .cw-thinking { align-self: flex-start; font-size: 11px; font-style: italic; color: rgba(29,95,250,0.7); font-family: ui-monospace, monospace; letter-spacing: 0.04em; padding: 0 4px; animation: cw-fade 0.3s ease; }
   @keyframes cw-fade { from { opacity: 0; } to { opacity: 1; } }
-
-  .cw-dots {
-    display: flex;
-    gap: 4px;
-    padding: 12px 14px;
-    background: #0C1A3A;
-    border: 1px solid rgba(29,95,250,0.15);
-    border-radius: 12px;
-    border-bottom-left-radius: 4px;
-    align-self: flex-start;
-  }
-  .cw-dots span {
-    width: 6px; height: 6px;
-    background: rgba(29,95,250,0.6);
-    border-radius: 50%;
-    animation: cw-dot-bounce 1.2s ease-in-out infinite;
-  }
+  .cw-dots { display: flex; gap: 4px; padding: 12px 14px; background: #0C1A3A; border: 1px solid rgba(29,95,250,0.15); border-radius: 12px; border-bottom-left-radius: 4px; align-self: flex-start; }
+  .cw-dots span { width: 6px; height: 6px; background: rgba(29,95,250,0.6); border-radius: 50%; animation: cw-dot-bounce 1.2s ease-in-out infinite; }
   .cw-dots span:nth-child(2) { animation-delay: 0.2s; }
   .cw-dots span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes cw-dot-bounce {
-    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
-    40%           { transform: translateY(-5px); opacity: 1; }
-  }
-
-  #cw-input-bar {
-    padding: 12px 14px;
-    background: #0C1A3A;
-    border-top: 1px solid rgba(29,95,250,0.18);
-    display: flex;
-    gap: 8px;
-    align-items: flex-end;
-    flex-shrink: 0;
-  }
-  #cw-input {
-    flex: 1;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(29,95,250,0.25);
-    border-radius: 10px;
-    padding: 9px 12px;
-    color: #fff;
-    font-size: 13px;
-    font-family: system-ui, sans-serif;
-    resize: none;
-    outline: none;
-    line-height: 1.5;
-    max-height: 100px;
-    transition: border-color 0.2s;
-  }
+  @keyframes cw-dot-bounce { 0%, 80%, 100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-5px); opacity: 1; } }
+  #cw-input-bar { padding: 12px 14px; background: #0C1A3A; border-top: 1px solid rgba(29,95,250,0.18); display: flex; gap: 8px; align-items: flex-end; flex-shrink: 0; }
+  #cw-input { flex: 1; background: rgba(255,255,255,0.05); border: 1px solid rgba(29,95,250,0.25); border-radius: 10px; padding: 9px 12px; color: #fff; font-size: 13px; font-family: system-ui, sans-serif; resize: none; outline: none; line-height: 1.5; max-height: 100px; transition: border-color 0.2s; }
   #cw-input::placeholder { color: rgba(255,255,255,0.25); }
   #cw-input:focus { border-color: rgba(29,95,250,0.6); }
-  #cw-mic-btn {
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.08);
-    color: white;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.2s;
-  }
+  #cw-mic-btn { width: 36px; height: 36px; border-radius: 50%; border: none; background: rgba(255,255,255,0.08); color: white; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s; }
   #cw-mic-btn svg { width: 16px; height: 16px; }
   #cw-mic-btn:hover { background: rgba(255,255,255,0.15); }
   #cw-mic-btn.listening { background: rgba(220,38,38,0.7); animation: cw-pulse 1s infinite; }
-  @keyframes cw-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(220,38,38,0.4); } 50% { box-shadow: 0 0 0 6px rgba(220,38,38,0); } }
-
-  #cw-send-btn {
-    width: 38px;
-    height: 38px;
-    border-radius: 10px;
-    background: #1D5FFA;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: background 0.2s, transform 0.1s;
-  }
+  #cw-send-btn { width: 38px; height: 38px; border-radius: 10px; background: #1D5FFA; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, transform 0.1s; }
   #cw-send-btn:hover { background: #3570ff; }
   #cw-send-btn:active { transform: scale(0.93); }
   #cw-send-btn:disabled { background: rgba(29,95,250,0.3); cursor: not-allowed; }
   #cw-send-btn svg { width: 16px; height: 16px; }
-
-  #cw-branding {
-    text-align: center;
-    padding: 6px 0 8px;
-    font-size: 10px;
-    color: rgba(255,255,255,0.18);
-    font-family: ui-monospace, monospace;
-    letter-spacing: 0.08em;
-    flex-shrink: 0;
-  }
-
+  #cw-branding { text-align: center; padding: 6px 0 8px; font-size: 10px; color: rgba(255,255,255,0.18); font-family: ui-monospace, monospace; letter-spacing: 0.08em; flex-shrink: 0; }
   @media (max-width: 480px) {
-    #cw-chat-panel {
-      bottom: 0; right: 0; left: 0;
-      width: 100%;
-      height: 70vh;
-      border-radius: 16px 16px 0 0;
-    }
+    #cw-chat-panel { bottom: 0; right: 0; left: 0; width: 100%; height: 70vh; border-radius: 16px 16px 0 0; }
     #cw-chat-btn { bottom: 20px; right: 20px; }
   }
 </style>
 
-<!-- Floating Button -->
 <button id="cw-chat-btn" aria-label="Open chat">
   <svg viewBox="0 0 24 24" fill="none" stroke="#5A8FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
   </svg>
 </button>
 
-<!-- Chat Panel -->
 <div id="cw-chat-panel" role="dialog" aria-label="Crestward Assistant chat">
   <div id="cw-panel-header">
     <div class="cw-avatar">
@@ -665,9 +969,7 @@ class Component extends DCLogic {
       </svg>
     </button>
   </div>
-
   <div id="cw-messages"></div>
-
   <div id="cw-input-bar">
     <textarea id="cw-input" rows="1" placeholder="Ask about our services…" aria-label="Message input"></textarea>
     <button id="cw-mic-btn" aria-label="Voice input" title="Speak your message">
@@ -690,21 +992,17 @@ class Component extends DCLogic {
   const API_BASE   = 'https://agenthub.smartschema.io/api';
   const API_KEY    = 'sk-aJPUyPB7KeBxxA0DW7pv1AQnaHQBfb0IqnwFj0e6RyY';
   const AGENT_ID   = 'f87a5eea-db8f-4901-9e59-7363575b4250';
-
   const btn        = document.getElementById('cw-chat-btn');
   const panel      = document.getElementById('cw-chat-panel');
   const closeBtn   = document.getElementById('cw-close-btn');
   const messages   = document.getElementById('cw-messages');
   const input      = document.getElementById('cw-input');
   const sendBtn    = document.getElementById('cw-send-btn');
-
   let sessionId    = null;
   let isStreaming  = false;
   let opened       = false;
 
-  function ts() {
-    return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  }
+  function ts() { return new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
 
   function addMsg(role, text) {
     const wrap = document.createElement('div');
@@ -755,30 +1053,24 @@ class Component extends DCLogic {
     if (isStreaming) return;
     isStreaming = true;
     sendBtn.disabled = true;
-
     if (!sessionId) {
       try { sessionId = await createSession(); }
       catch (e) { addMsg('assistant', 'Connection error. Please email hello@crestwardlabs.com directly.'); isStreaming = false; sendBtn.disabled = false; return; }
     }
-
     addMsg('user', text);
-
     const dots = showDots();
     let thinkingEl = null;
     let bubble = null;
     let fullText = '';
-
     try {
       const res = await fetch(`${API_BASE}/public/sessions/${sessionId}/stream`, {
         method: 'POST',
         headers: { 'Authorization': 'Bearer ' + API_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text, filter_vars: {} })
       });
-
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       let buf = '';
-
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
@@ -789,12 +1081,10 @@ class Component extends DCLogic {
           if (!line.startsWith('data: ')) continue;
           let event;
           try { event = JSON.parse(line.slice(6)); } catch { continue; }
-
           if (event.type === 'thinking_step') {
             if (!thinkingEl) { dots.remove(); thinkingEl = addThinking(event.content || 'Thinking…'); }
             else { thinkingEl.textContent = '⟳ ' + (event.content || 'Thinking…'); }
           }
-
           if (event.type === 'delta') {
             if (thinkingEl) { thinkingEl.remove(); thinkingEl = null; }
             if (!bubble) {
@@ -814,24 +1104,14 @@ class Component extends DCLogic {
             bubble.innerHTML = parseMarkdown(fullText);
             messages.scrollTop = messages.scrollHeight;
           }
-
-          if (event.type === 'done') {
-            dots.remove();
-            if (thinkingEl) thinkingEl.remove();
-          }
-
-          if (event.type === 'error') {
-            dots.remove();
-            if (thinkingEl) thinkingEl.remove();
-            addMsg('assistant', 'Something went wrong. Please reach out at hello@crestwardlabs.com');
-          }
+          if (event.type === 'done') { dots.remove(); if (thinkingEl) thinkingEl.remove(); }
+          if (event.type === 'error') { dots.remove(); if (thinkingEl) thinkingEl.remove(); addMsg('assistant', 'Something went wrong. Please reach out at hello@crestwardlabs.com'); }
         }
       }
     } catch (e) {
       dots.remove();
       addMsg('assistant', 'Connection lost. Please email hello@crestwardlabs.com directly.');
     }
-
     isStreaming = false;
     sendBtn.disabled = false;
     input.focus();
@@ -854,15 +1134,9 @@ class Component extends DCLogic {
   async function openPanel() {
     panel.classList.add('open');
     btn.style.display = 'none';
-    // Hide cookie banner on mobile so it doesn't block the input
     var cookieBanner = document.getElementById('cw-cookie-banner');
-    if (cookieBanner && window.innerWidth <= 480) {
-      cookieBanner.style.display = 'none';
-    }
-    if (!opened) {
-      opened = true;
-      addWelcome();
-    }
+    if (cookieBanner && window.innerWidth <= 480) cookieBanner.style.display = 'none';
+    if (!opened) { opened = true; addWelcome(); }
   }
 
   function addWelcome() {
@@ -883,7 +1157,6 @@ class Component extends DCLogic {
   function closePanel() {
     panel.classList.remove('open');
     btn.style.display = 'flex';
-    // Restore cookie banner on mobile if consent not yet given
     var cookieBanner = document.getElementById('cw-cookie-banner');
     if (cookieBanner && !localStorage.getItem('cw_cookie_consent') && window.innerWidth <= 480) {
       cookieBanner.style.display = 'flex';
@@ -893,7 +1166,6 @@ class Component extends DCLogic {
 
   btn.addEventListener('click', openPanel);
   closeBtn.addEventListener('click', closePanel);
-
   sendBtn.addEventListener('click', () => {
     const text = input.value.trim();
     if (!text) return;
@@ -901,84 +1173,52 @@ class Component extends DCLogic {
     input.style.height = 'auto';
     sendMessage(text);
   });
-
   input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      e.preventDefault();
-      sendBtn.click();
-    }
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendBtn.click(); }
   });
-
   input.addEventListener('input', () => {
     input.style.height = 'auto';
     input.style.height = Math.min(input.scrollHeight, 100) + 'px';
   });
 
-  // ── Voice to text ──────────────────────────────────────────────────
   var micBtn = document.getElementById('cw-mic-btn');
   var SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SpeechRec) {
-    micBtn.style.display = 'none'; // hide if browser doesn't support
+    micBtn.style.display = 'none';
   } else {
     var recognition = new SpeechRec();
     recognition.lang = 'en-US';
     recognition.continuous = false;
     recognition.interimResults = true;
-
     var listening = false;
     var savedText = '';
     var sessionTranscript = '';
-
-    recognition.onstart = function() {
-      sessionTranscript = '';
-    };
-
+    recognition.onstart = function() { sessionTranscript = ''; };
     recognition.onresult = function(e) {
       sessionTranscript = '';
       var interimText = '';
       for (var i = 0; i < e.results.length; i++) {
-        if (e.results[i].isFinal) {
-          sessionTranscript += e.results[i][0].transcript + ' ';
-        } else {
-          interimText = e.results[i][0].transcript;
-        }
+        if (e.results[i].isFinal) sessionTranscript += e.results[i][0].transcript + ' ';
+        else interimText = e.results[i][0].transcript;
       }
       var prefix = savedText ? savedText + ' ' : '';
       input.value = (prefix + sessionTranscript + interimText).trim();
       input.dispatchEvent(new Event('input'));
     };
-
     recognition.onend = function() {
-      if (sessionTranscript) {
-        savedText = input.value.trim();
-      }
+      if (sessionTranscript) savedText = input.value.trim();
       sessionTranscript = '';
-      if (listening) {
-        try { recognition.start(); } catch(err) {}
-      } else {
-        micBtn.classList.remove('listening');
-      }
+      if (listening) { try { recognition.start(); } catch(err) {} }
+      else micBtn.classList.remove('listening');
     };
-
     recognition.onerror = function(e) {
-      if (e.error === 'no-speech') {
-        if (listening) { try { recognition.start(); } catch(err) {} }
-        return;
-      }
+      if (e.error === 'no-speech') { if (listening) { try { recognition.start(); } catch(err) {} } return; }
       listening = false;
       micBtn.classList.remove('listening');
     };
-
     micBtn.addEventListener('click', function() {
-      if (listening) {
-        listening = false;
-        recognition.stop();
-      } else {
-        listening = true;
-        savedText = input.value.trim();
-        micBtn.classList.add('listening');
-        try { recognition.start(); } catch(err) {}
-      }
+      if (listening) { listening = false; recognition.stop(); }
+      else { listening = true; savedText = input.value.trim(); micBtn.classList.add('listening'); try { recognition.start(); } catch(err) {} }
     });
   }
 })();
@@ -989,7 +1229,7 @@ class Component extends DCLogic {
 <div id="cw-cookie-banner" style="display:none; position:fixed; bottom:0; left:0; right:0; z-index:99998; background:rgba(8,12,24,0.97); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); border-top:1px solid rgba(255,255,255,0.08); padding:16px clamp(20px,5vw,48px); flex-wrap:wrap; align-items:center; justify-content:space-between; gap:14px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
   <p style="margin:0; font-size:13px; color:rgba(255,255,255,0.55); max-width:60ch; line-height:1.5;">
     We use cookies to understand how visitors use this site and improve your experience.
-    <a href="#" style="color:#4580FF; text-decoration:underline; margin-left:4px;">Learn more</a>
+    <a href="/privacy" style="color:#4580FF; text-decoration:underline; margin-left:4px;">Learn more</a>
   </p>
   <div style="display:flex; gap:10px; flex-shrink:0;">
     <button id="cw-cookie-decline" style="background:transparent; border:1px solid rgba(255,255,255,0.18); color:rgba(255,255,255,0.55); font-size:13px; font-weight:500; padding:8px 18px; border-radius:6px; cursor:pointer;">Decline</button>
@@ -1007,19 +1247,13 @@ class Component extends DCLogic {
     var isMobile = window.innerWidth <= 480;
     var baseBottom = isMobile ? 20 : 28;
     if (banner.style.display !== 'none') {
-      var bannerH = banner.offsetHeight;
-      btn.style.bottom = (baseBottom + bannerH + 8) + 'px';
+      btn.style.bottom = (baseBottom + banner.offsetHeight + 8) + 'px';
     } else {
       btn.style.bottom = baseBottom + 'px';
     }
   }
-
-  if (!consent) {
-    // Banner is visible on load — push button up immediately
-    setTimeout(updateChatBtnOffset, 50);
-  }
+  if (!consent) { setTimeout(updateChatBtnOffset, 50); }
   window.addEventListener('resize', updateChatBtnOffset);
-
   document.getElementById('cw-cookie-accept').addEventListener('click', function() {
     localStorage.setItem('cw_cookie_consent', 'accepted');
     banner.style.display = 'none';
@@ -1034,5 +1268,82 @@ class Component extends DCLogic {
 })();
 </script>
 <!-- ── END COOKIE CONSENT ─────────────────────────────────────────── -->
+
+<!-- ── HERO CANVAS PARTICLE NETWORK ──────────────────────────────── -->
+<script>
+(function() {
+  var canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var pts = [];
+  var N = 55;
+  var RAF;
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth  || window.innerWidth;
+    canvas.height = canvas.offsetHeight || window.innerHeight;
+  }
+
+  function init() {
+    resize();
+    pts = [];
+    for (var i = 0; i < N; i++) {
+      pts.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 0.8
+      });
+    }
+  }
+
+  var last = 0;
+  function draw(t) {
+    RAF = requestAnimationFrame(draw);
+    if (t - last < 20) return;
+    last = t;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0 || p.x > canvas.width)  p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+    }
+
+    for (var i = 0; i < pts.length; i++) {
+      for (var j = i + 1; j < pts.length; j++) {
+        var dx = pts[i].x - pts[j].x;
+        var dy = pts[i].y - pts[j].y;
+        var d2 = dx * dx + dy * dy;
+        if (d2 < 18000) {
+          var alpha = (1 - d2 / 18000) * 0.22;
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(29,95,250,' + alpha + ')';
+          ctx.lineWidth = 0.7;
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    for (var i = 0; i < pts.length; i++) {
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(29,95,250,0.55)';
+      ctx.arc(pts[i].x, pts[i].y, pts[i].r, 0, 6.283185);
+      ctx.fill();
+    }
+  }
+
+  window.addEventListener('resize', init);
+  init();
+  requestAnimationFrame(draw);
+})();
+</script>
+<!-- ── END CANVAS ─────────────────────────────────────────────────── -->
+
 </body>
 </html>

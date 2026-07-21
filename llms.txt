@@ -1,0 +1,38 @@
+# Crestward Labs
+
+> Agentic AI systems and software engineering practice based in Vancouver, BC, Canada.
+
+Crestward Labs designs, builds, and ships production-grade agentic AI systems and full-stack software products for founders, product teams, and CTOs. Every engagement is led hands-on by senior engineers — no layers of management.
+
+## Services
+
+- **Agentic AI Systems**: Multi-agent architectures that reason, plan, and act autonomously. Built with RAG (retrieval-augmented generation), MCP (Model Context Protocol), real-time SSE streaming, and public APIs. Compatible with Claude, GPT-4o, and open-weight models.
+- **Software Engineering**: Full-stack product development with clean architecture. Production-grade APIs and frontends using FastAPI, TypeScript, Angular, and PostgreSQL.
+- **AI Workflow Automation**: End-to-end automation using all orchestration modes: sequential pipelines, parallel fan-out, hierarchical delegation, event-driven triggers, collaborative peer agents, and hybrid combinations.
+
+## Orchestration Modes
+
+Crestward Labs has expertise in every major multi-agent workflow pattern:
+
+- **Sequential**: Step-by-step pipelines where each agent hands off to the next.
+- **Parallel**: Simultaneous fan-out execution across multiple agents for maximum throughput.
+- **Hierarchical**: An orchestrator delegates to sub-agents, each managing their own scope.
+- **Event-Driven**: Agents activate on webhooks, schedules, database events, or API calls.
+- **Collaborative**: Agents communicate directly as peers, sharing context and negotiating outputs.
+- **Hybrid**: Any combination of the above patterns within a single workflow.
+
+## Technology Stack
+
+Python, FastAPI, TypeScript, Angular, PostgreSQL, Azure, Claude API (Anthropic), OpenAI API, RAG pipelines, MCP (Model Context Protocol), SSE streaming, multi-tenant SaaS architecture.
+
+## Contact
+
+- Website: https://crestwardlabs.com
+- Email: hello@crestwardlabs.com
+- LinkedIn: https://www.linkedin.com/company/crestward-labs
+- YouTube: https://www.youtube.com/@CrestwardLabs
+- Location: Vancouver, BC, Canada
+
+## About
+
+Crestward Labs is a boutique agentic AI and software engineering practice. We focus on systems where AI reasons, takes action, and delivers results autonomously at production scale — with guardrails, observability, and the resilience real workloads demand.
